@@ -1,20 +1,20 @@
 #!groovy
-// Check host properties
+// Check properties
 properties([disableConcurrentBuilds()])
 
-pipline {
-  agent {
-    lable 'main'
-  }
-  oprtions {
-    buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-    timestamps()
-  }
-  stages {
-    stage ("Preparation") {
-      steps {
-        sh 'ssh root@192.168.88.200 \'hostname\''
-      }
+pipeline {
+    agent { 
+        label 'main'
+        }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
     }
-  }
+    stages {
+        stage("First step") {
+            steps {
+                sh 'ssh root@u192.168.88.200 \'hostname\''
+            }
+        }
+    }
 }
