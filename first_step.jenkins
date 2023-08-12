@@ -4,7 +4,7 @@ properties([disableConcurrentBuilds()])
 
 pipline {
   agent {
-    lable 'master'
+    lable 'main'
   }
   oprtions {
     buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
