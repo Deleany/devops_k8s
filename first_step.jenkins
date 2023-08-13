@@ -10,12 +10,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
         timestamps()
     }
-    stages {
-        stage("check git commit") {
-            steps {
-                echo $GIT_COMMIT
-            }
-        }
         stage("login to k8s") {
             steps {
                 sh 'ssh root@192.168.88.200 \
