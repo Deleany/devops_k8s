@@ -19,7 +19,7 @@ stages {
         }
         stage("stage2") {
             steps {
-                echo '$SHELL'
+                echo $SHELL
             }
         }
     }
