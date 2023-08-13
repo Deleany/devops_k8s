@@ -10,6 +10,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
         timestamps()
     }
+stages {
         stage("login to k8s") {
             steps {
                 sh 'ssh root@192.168.88.200 \
@@ -17,3 +18,4 @@ pipeline {
             }
         }
     }
+}
