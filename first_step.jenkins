@@ -20,6 +20,7 @@ stages {
         stage("stage2") {
             steps {
                 sh 'echo $SHELL'
+                sh 'hostname'
             }
         }
     }
