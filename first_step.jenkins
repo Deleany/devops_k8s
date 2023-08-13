@@ -11,9 +11,14 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("First step") {
+        stage("login to k8s") {
             steps {
                 sh 'ssh root@192.168.88.200 \'hostname\''
+            }
+        }
+        stage("check nodes") {
+            steps {
+                sh 'k get nodes'
             }
         }
     }
