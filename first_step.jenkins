@@ -13,6 +13,7 @@ pipeline {
     stages {
         stage("login to k8s") {
             steps {
+                echo $GIT_COMMIT
                 sh 'ssh root@192.168.88.200 \
 \'kubectl get nodes\''
             }
