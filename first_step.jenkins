@@ -13,6 +13,7 @@ stages {
             steps {
                 sh 'ssh root@192.168.88.200 \
 \'kubectl get nodes\''
+                sh 'hostname'
             }
         }
         stage("stage2") {
