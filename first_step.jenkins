@@ -17,5 +17,10 @@ stages {
 \'kubectl get nodes\''
             }
         }
+        stage("stage2") {
+            steps {
+                echo '%SHELL'
+            }
+        }
     }
 }
