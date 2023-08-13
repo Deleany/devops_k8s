@@ -14,7 +14,7 @@ pipeline {
         stage("login to k8s") {
             steps {
                 sh 'ssh root@192.168.88.200 \'hostname\''
-                sh 'k get nodes'
+                sh 'kubectl get nodes'
             }
         }
     }
