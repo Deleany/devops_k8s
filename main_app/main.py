@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 app = FastAPI()
@@ -9,11 +10,11 @@ async def root():
 
 
 @app.post("/calculate")
-async def calculate(val1: int, val2: int) -> dict:
+async def calculate(val1, val2) -> dict:
     return {
         "result": f"{val1 + val2}"
     }
 
 
 if __name__ == "__main__":
-    root()
+    uvicorn.run("main:app", host="127.0.0.1", port=8066, reload=True, workers=3)
