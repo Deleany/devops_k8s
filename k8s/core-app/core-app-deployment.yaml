@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-app
+  labels:
+    app: core-app
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: core-app
+
+  template:
+    metadata:
+      labels:
+        app: core-app
+
+    spec:
+      containers:
+      - name: core-app
+        image: deleany/core-app:v2.3
+        ports:
+        - containerPort: 1111
+
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 200m
+            memory: 400Mi
+
+        env:
+        - name: __POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: __POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
