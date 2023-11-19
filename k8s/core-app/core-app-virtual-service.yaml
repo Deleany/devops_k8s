@@ -8,7 +8,6 @@ spec:
   - "*"
   gateways:
   - istio-ingress-gateway
-  - mesh # applies to all the sidecars in the mesh
   http:
   - match:
     - uri:
