@@ -3,10 +3,12 @@ kind: Service
 metadata:
   namespace: default
   name: core-app-svc
+  labels:
+    app: core-app
 spec:
   selector:
     app: core-app
   ports:
-  - protocol: TCP
+  - name: tcp-core-app
     port: 8081
     targetPort: 1111
