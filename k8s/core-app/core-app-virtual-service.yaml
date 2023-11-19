@@ -14,5 +14,4 @@ spec:
         prefix: /
     route:
     - destination:
-        host: core-app-svc
-        subset: core-app-subset
+        host: core-app-svc.default.svc.cluster.local

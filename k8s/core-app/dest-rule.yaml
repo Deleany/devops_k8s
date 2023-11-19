@@ -7,10 +7,7 @@ spec:
   subsets:
   - name: core-app-subset
     labels:
-      version: v3
       app: core-app
-      chapter: istio
-      topic: traffic-manager
     trafficPolicy:
       loadBalancer:
         simple: ROUND_ROBIN
