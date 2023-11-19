@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   hosts:
-  - "*"
+  - "app.rezz.io"
   gateways:
   - istio-ingress-gateway
   http:
@@ -15,6 +15,3 @@ spec:
     route:
     - destination:
         host: core-app-svc
-        port:
-          number: 8080 # can be omitted if it's the only port for reviews
-      weight: 100
