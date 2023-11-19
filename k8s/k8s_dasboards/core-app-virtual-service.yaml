@@ -17,7 +17,7 @@ spec:
     - destination:
         host: core-app-svc
         port:
-          number: 9080 # can be omitted if it's the only port for reviews
+          number: 8080 # can be omitted if it's the only port for reviews
       weight: 100
     - destination:
         host: core-app-svc2
