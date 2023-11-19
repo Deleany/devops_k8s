@@ -15,3 +15,4 @@ spec:
     route:
     - destination:
         host: core-app-svc
+        subset: core-app-subset
