@@ -9,6 +9,6 @@ spec:
   selector:
     app: core-app
   ports:
-  - name: tcp-core-app
+  - name: http-core-app
     port: 8080
     targetPort: 1111
