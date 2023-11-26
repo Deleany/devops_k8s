@@ -15,4 +15,5 @@ spec:
     route:
     - destination:
         host: core-app-svc.default.svc.cluster.local
+        subset: core-app-dst-rule
       weight: 100
