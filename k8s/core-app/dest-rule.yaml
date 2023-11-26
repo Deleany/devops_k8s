@@ -11,4 +11,4 @@ spec:
       version: v1
     trafficPolicy:
       loadBalancer:
-        simple: PASSTHROUGH
+        simple: ROUND_ROBIN
