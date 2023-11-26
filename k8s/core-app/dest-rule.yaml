@@ -8,7 +8,6 @@ spec:
   - name: core-app-subset
     labels:
       app: core-app
-      version: v1
     trafficPolicy:
       loadBalancer:
         simple: ROUND_ROBIN
