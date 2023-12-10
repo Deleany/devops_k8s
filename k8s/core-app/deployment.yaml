@@ -49,17 +49,17 @@ spec:
               name: core-app-config
               key: port
 
-      volumeMounts:
-        - name: core-app-vol
-          mountPath: "/config"
-          readOnly: true
+        volumeMounts:
+          - name: core-app-vol
+            mountPath: "/config"
+            readOnly: true
 
-    volumes:
-      - name: core-app-vol
-        configMap:
-          name: core-app-config
-          items:
-          - key: "config.ini"
-            path: "config.ini"
-          - key: "game-special-key"
-            path: "game-special-key"
+      volumes:
+        - name: core-app-vol
+          configMap:
+            name: core-app-config
+            items:
+            - key: "config.ini"
+              path: "config.ini"
+            - key: "game-special-key"
+              path: "game-special-key"
