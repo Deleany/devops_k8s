@@ -5,7 +5,7 @@ app = FastAPI()
 
 __POD_NAME = os.getenv('__POD_NAME')
 __POD_IP = os.getenv('__POD_IP')
-__PORT_NAME = os.getenv()
+__PORT_NAME = os.getenv('__PORT_NAME')
 __CLUSTER_DNS = "default.svc.cluster.local"
 
 @app.get("/")

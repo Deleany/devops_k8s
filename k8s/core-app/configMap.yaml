@@ -12,5 +12,5 @@ data:
     secret.code.passphrase=UUDDLRLRBABAS
     secret.code.allowed=true
     secret.code.lives=30
-  port: 8022
+  port: 8080
   config.ini: "This is demo config!!!"
