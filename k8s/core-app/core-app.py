@@ -1,6 +1,6 @@
 import os
 import requests
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.responses import PlainTextResponse
 app = FastAPI()
 
@@ -16,10 +16,10 @@ async def get_from_root():
 
 
 
-@app.get("/app")
+@app.get("/app", )
 async def get_from_app():
     data = requests.get(f"{__URL_NAME}")
-    return data.text
+    return Response(content=data.content, status_code=200)
 
 
 
