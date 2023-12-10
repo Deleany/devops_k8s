@@ -23,6 +23,9 @@ spec:
         image: deleany/core-app:v2.5
         ports:
         - containerPort: 1111
+        volumeMounts:
+          - name: core-app-config
+            mountPath: /app
 
         resources:
           requests:
@@ -41,3 +44,24 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
+
+        - name: __PORT_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: core-app-config
+              key: port
+
+      volumeMounts:
+        - name: core-app-config
+          mountPath: "/app"
+          readOnly: true
+
+    volumes:
+      - name: core-app-config
+        configMap:
+          name: core-app-config
+          items:
+          - key: "config.ini"
+            path: "config.ini"
+          - key: "game-special-key"
+            path: "game-special-key"
