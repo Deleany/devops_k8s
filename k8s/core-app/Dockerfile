@@ -3,13 +3,13 @@ LABEL authors="Deleany"
 
 WORKDIR /app
 
-COPY requirements.txt /app
+COPY ../../requirements.txt /app
 
 RUN pip3 --no-cache-dir install --upgrade pip && \
     pip3 --no-cache-dir install -r requirements.txt
 RUN apk --no-cache add curl
 
-COPY main.py /app
+COPY core-app.py /app
 
 EXPOSE 1111
 

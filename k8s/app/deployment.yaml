@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: app
+  labels:
+    app: app
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+
+  template:
+    metadata:
+      labels:
+        app: app
+
+    spec:
+      containers:
+      - name: app
+        image: deleany/app:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 2020
+
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 200m
+            memory: 400Mi
+
+        env:
+        - name: __POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: __POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+
+        - name: __PORT_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: port
+
+        volumeMounts:
+          - name: app-vol
+            mountPath: "/config"
+            readOnly: true
+
+      volumes:
+        - name: app-vol
+          configMap:
+            name: app-config
+            items:
+            - key: "config.ini"
+              path: "config.ini"
+            - key: "game-special-key"
+              path: "game-special-key"

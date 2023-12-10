@@ -1,6 +1,7 @@
 import os
 import requests
 from fastapi import FastAPI
+from fastapi.responses import PlainTextResponse
 app = FastAPI()
 
 __POD_NAME = os.getenv('__POD_NAME')
@@ -8,15 +9,11 @@ __POD_IP = os.getenv('__POD_IP')
 __URL_NAME = os.getenv('__PORT_NAME')
 __CLUSTER_DNS = "default.svc.cluster.local"
 
-@app.get("/")
-async def root():
-    return f"Hello from {__name__}.app host: {__POD_NAME} ip: {__POD_IP}"
 
 
-@app.get("/core")
-async def get_from_pod1():
-    data = requests.get(f"{__URL_NAME}")
-    return data.content
+@app.get("/", response_class=PlainTextResponse)
+async def get_from_root():
+    return f"Hello from {__POD_NAME}"
 
 
 
