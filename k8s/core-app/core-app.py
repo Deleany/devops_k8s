@@ -19,7 +19,7 @@ async def get_from_root():
 @app.get("/app", )
 async def get_from_app():
     data = requests.get(__URL_NAME)
-    return Response(content=data.content, status_code=200)
+    return data.content
 
 
 
