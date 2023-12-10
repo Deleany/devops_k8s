@@ -12,5 +12,5 @@ data:
     secret.code.passphrase=UUDDLRLRBABAS
     secret.code.allowed=true
     secret.code.lives=30
-  port: "https://stepik.org:443"
+  port: "app:8022"
   config.ini: "This is demo config!!!"
