@@ -5,7 +5,7 @@ app = FastAPI()
 
 __POD_NAME = os.getenv('__POD_NAME')
 __POD_IP = os.getenv('__POD_IP')
-__PORT_NAME = os.getenv('__PORT_NAME')
+__URL_NAME = os.getenv('__PORT_NAME')
 __CLUSTER_DNS = "default.svc.cluster.local"
 
 @app.get("/")
@@ -15,7 +15,7 @@ async def root():
 
 @app.get("/core")
 async def get_from_pod1():
-    data = requests.get(f"app-svc:{__PORT_NAME}")
+    data = requests.get(f"{__URL_NAME}")
     return data.content
 
 
