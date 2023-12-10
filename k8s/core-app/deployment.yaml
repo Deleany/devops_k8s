@@ -50,12 +50,12 @@ spec:
               key: port
 
       volumeMounts:
-        - name: core-app-config
-          mountPath: "/app"
+        - name: core-app-vol
+          mountPath: "/config"
           readOnly: true
 
     volumes:
-      - name: core-app-config
+      - name: core-app-vol
         configMap:
           name: core-app-config
           items:
