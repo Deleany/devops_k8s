@@ -23,9 +23,6 @@ spec:
         image: deleany/core-app:latest
         ports:
         - containerPort: 1111
-        volumeMounts:
-          - name: core-app-config
-            mountPath: /app
 
         resources:
           requests:
