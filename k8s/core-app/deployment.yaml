@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: core-app
-        image: deleany/core-app:v2.5
+        image: deleany/core-app:latest
         ports:
         - containerPort: 1111
         volumeMounts:

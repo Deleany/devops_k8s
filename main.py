@@ -15,7 +15,7 @@ async def root():
 
 @app.get("/core")
 async def get_from_pod1():
-    data = requests.get(f"core-app-svc:{__PORT_NAME}")
+    data = requests.get(f"app-svc:{__PORT_NAME}")
     return data.content
 
 
