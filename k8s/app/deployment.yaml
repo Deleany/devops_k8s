@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: deleany/app:v1
+        image: deleany/app:v2
         imagePullPolicy: Always
         ports:
         - containerPort: 2020

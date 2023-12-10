@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: core-app
-        image: deleany/core-app:v1
+        image: deleany/core-app:v2
         imagePullPolicy: Always
         ports:
         - containerPort: 1111

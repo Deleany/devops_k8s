@@ -13,4 +13,4 @@ COPY core-app.py /app
 
 EXPOSE 1111
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "1111"]
+CMD ["uvicorn", "core-app:app", "--host", "0.0.0.0", "--port", "1111"]
