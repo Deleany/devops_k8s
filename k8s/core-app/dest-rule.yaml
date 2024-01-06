@@ -9,7 +9,5 @@ spec:
     labels:
       app: core-app
     trafficPolicy:
-      loadBalancer:
-        simple: ROUND_ROBIN
         tls:
           mode: ISTIO_MUTUAL
