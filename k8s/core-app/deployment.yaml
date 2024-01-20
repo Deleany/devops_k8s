@@ -68,14 +68,14 @@ spec:
             cpu: 200m
             memory: 400Mi
 
-      volumeMounts:
-        - name: filebeat-config
-          mountPath: /etc/filebeat
-          readOnly: true
+        volumeMounts:
+          - name: filebeat-config
+            mountPath: /etc/filebeat
+            readOnly: true
 
-        - name: logs-dir
-          mountPath: /tmp/logs
-          readOnly: true
+          - name: logs-dir
+            mountPath: /tmp/logs
+            readOnly: true
 
       volumes:
         - name: core-app-vol
