@@ -24,7 +24,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 1111
-
         resources:
           requests:
             cpu: 100m
@@ -54,6 +53,30 @@ spec:
             mountPath: "/config"
             readOnly: true
 
+          - name: logs-dir
+            mountPath: /tmp/logs
+            readOnly: true
+
+      - name: filebeat-sidecar
+        image: deleany/file:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 200m
+            memory: 400Mi
+
+      volumeMounts:
+        - name: filebeat-config
+          mountPath: /etc/filebeat
+          readOnly: true
+
+        - name: logs-dir
+          mountPath: /tmp/logs
+          readOnly: true
+
       volumes:
         - name: core-app-vol
           configMap:
@@ -63,3 +86,11 @@ spec:
               path: "config.ini"
             - key: "game-special-key"
               path: "game-special-key"
+        - name: filebeat-config
+          configMap:
+            name: filebeat-config
+            items:
+            - key: "filebeat-config.yaml"
+              path: "game-special-key"
+        - name: logs-dir
+          emptyDir: {}
