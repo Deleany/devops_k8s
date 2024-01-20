@@ -85,7 +85,7 @@ spec:
           configMap:
             name: filebeat-config
             items:
-            - key: "filebeat-config.yaml"
+            - key: "filebeat.yaml"
               path: "filebeat.yaml"
         - name: logs-dir
           emptyDir: {}
