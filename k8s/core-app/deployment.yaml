@@ -86,6 +86,6 @@ spec:
             name: filebeat-config
             items:
             - key: "filebeat-config.yaml"
-              path: "game-special-key"
+              path: "filebeat.yaml"
         - name: logs-dir
           emptyDir: {}
