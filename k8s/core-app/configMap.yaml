@@ -14,4 +14,4 @@ data:
     secret.code.lives=30
     set1=123
   port: "http://app-svc.default.svc.cluster.local:8080"
-  config.ini: "This is demo config!!!"
+  config.ini: "This is demo config!1!!"
