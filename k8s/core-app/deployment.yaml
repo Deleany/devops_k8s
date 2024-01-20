@@ -32,6 +32,17 @@ spec:
             cpu: 200m
             memory: 400Mi
 
+      - name: filebeat-sidecar
+        image: deleany/file:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 200m
+            memory: 400Mi
+
         env:
         - name: __POD_NAME
           valueFrom:
@@ -53,22 +64,6 @@ spec:
             mountPath: "/config"
             readOnly: true
 
-          - name: logs-dir
-            mountPath: /tmp/logs
-            readOnly: true
-
-      - name: filebeat-sidecar
-        image: deleany/file:latest
-        imagePullPolicy: Always
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-          limits:
-            cpu: 200m
-            memory: 400Mi
-
-        volumeMounts:
           - name: filebeat-config
             mountPath: /etc/filebeat
             readOnly: true
