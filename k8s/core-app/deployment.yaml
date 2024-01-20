@@ -31,6 +31,34 @@ spec:
           limits:
             cpu: 200m
             memory: 400Mi
+        env:
+          - name: __POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: __POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+
+          - name: __PORT_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: core-app-config
+                key: port
+
+        volumeMounts:
+          - name: core-app-vol
+            mountPath: "/config"
+            readOnly: true
+
+          - name: filebeat-config
+            mountPath: /etc/filebeat
+            readOnly: true
+
+          - name: logs-dir
+            mountPath: /tmp/logs
+            readOnly: true
 
       - name: filebeat-sidecar
         image: deleany/file:latest
