@@ -1,0 +1,30 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: gateway-elk-vs
+  namespace: default
+spec:
+  hosts:
+  - elastic1.rezz.io
+  exportTo:
+  - "*"
+  gateways:
+  - mesh
+  - istio-egressgateway
+  http:
+  - match:
+    - port: 80
+      gateways:
+      - mesh
+    route:
+    - destination:
+        host: istio-egressgateway.istio-system.svc.cluster.local
+  - match:
+    - port: 80
+      gateways:
+      - istio-egressgateway
+    route:
+    - destination:
+        host: elastic1.rezz.io
+        port:
+          number: 9200

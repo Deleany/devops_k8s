@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: external-host-elk-se
+spec:
+  location: MESH_EXTERNAL
+  hosts:
+  - elastic1.rezz.io
+  ports:
+  - name: http-elk
+    number: 9200
+    protocol: HTTP
+  resolution: DNS
