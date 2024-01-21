@@ -5,7 +5,7 @@ metadata:
 spec:
   location: MESH_EXTERNAL
   hosts:
-  - elastic1.rezz.io
+  - elastic.rezz.io
   ports:
   - name: http-elk
     number: 9200
