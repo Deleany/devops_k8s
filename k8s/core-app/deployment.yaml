@@ -47,6 +47,9 @@ spec:
                 name: core-app-config
                 key: port
 
+        args: ["ls; filebeat -c /etc/filebeat/filebeat.yml"]
+        command: ["sh", "-c"]
+
         volumeMounts:
           - name: core-app-vol
             mountPath: "/config"
