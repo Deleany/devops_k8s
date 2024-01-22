@@ -58,7 +58,7 @@ spec:
 
           - name: logs-dir
             mountPath: /tmp/logs
-            readOnly: true
+            readOnly: false
 
       - name: filebeat-sidecar
         image: deleany/file:latest
@@ -101,7 +101,7 @@ spec:
 
           - name: logs-dir
             mountPath: /tmp/logs
-            readOnly: true
+            readOnly: false
 
       volumes:
         - name: core-app-vol
