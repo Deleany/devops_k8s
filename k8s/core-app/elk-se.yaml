@@ -8,6 +8,6 @@ spec:
   - elastic.rezz.io
   ports:
   - name: http-elk
-    number: 9200
+    number: 80
     protocol: HTTP
   resolution: DNS
