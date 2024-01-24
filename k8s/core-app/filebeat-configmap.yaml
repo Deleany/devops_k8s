@@ -12,7 +12,6 @@ data:
       enabled: true
       paths:
       - /var/log/pods/default*/*/*.log
-      json.keys_under.root: true
       fields_under_root: true
     output.elasticsearch:
       enabled: true
