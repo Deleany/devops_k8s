@@ -1,6 +1,6 @@
 import os
 import requests
-from fastapi import FastAPI, Response
+from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 app = FastAPI()
 
