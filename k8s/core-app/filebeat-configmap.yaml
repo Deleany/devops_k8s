@@ -18,5 +18,5 @@ data:
       ssl.verification_mode: none
       hosts: ["https://elastic.rezz.io"]
       username: "filebeat"
-      password: "${PASS}"
+      password: "$PASS"
       protocol: https
