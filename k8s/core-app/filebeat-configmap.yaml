@@ -8,9 +8,10 @@ data:
     logging.level: info
     logging.to_stderr: true
     filebeat.inputs:
-      type: log
+    - type: log
       enabled: true
-      paths: /var/logs/*.log
+      paths:
+      - /var/logs/*.log
       json.keys_under.root: true
       fields_under_root: true
     output.elasticsearch:
