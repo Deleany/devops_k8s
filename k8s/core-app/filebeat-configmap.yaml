@@ -11,7 +11,7 @@ data:
     - type: log
       enabled: true
       paths:
-      - /var/log/pods/*/*/*.log
+      - /tmp/logs/*.log
       json.keys_under.root: true
       fields_under_root: true
     output.elasticsearch:
