@@ -11,13 +11,17 @@ data:
     - type: log
       enabled: true
       paths:
-      - /var/log/pods/default*/*/*.log
+      - /var/log/pods/*/*/*.log
       json.keys_under.root: true
       fields_under_root: true
     output.elasticsearch:
-      enabled: true
-      ssl.verification_mode: none
+      enabled: true 
       hosts: ["https://elastic.rezz.io"]
       username: "filebeat"
       password: "$PASS"
       protocol: https
+      ssl.enable: true
+      ssl.certificate_authorities: "/etc/cert/root.pem"
+      ssl.certificate: "/etc/cert/filebeat.pem"
+      ssl.key: "/etc/cert/filebeat.key"
+      ssl.verification_mode: full
