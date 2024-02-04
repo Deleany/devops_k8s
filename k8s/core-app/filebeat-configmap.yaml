@@ -23,5 +23,5 @@ data:
       ssl.enable: true
       ssl.certificate_authorities: "/etc/cert/root.pem"
       ssl.certificate: "/etc/cert/filebeat.pem"
-      ssl.key: "/etc/cert/filebeat.k
+      ssl.key: "/etc/cert/filebeat.key
       ssl.verification_mode: certificate
