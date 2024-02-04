@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   hosts:
-  - "https://elastic.rezz.io/"
+  - "elastic.rezz.io"
   exportTo:
   - "*"
   gateways:
@@ -25,6 +25,6 @@ spec:
       - istio-egressgateway
     route:
     - destination:
-        host: "https://elastic.rezz.io/"
+        host: "elastic.rezz.io"
         port:
-          number: 9200
+          number: 80
