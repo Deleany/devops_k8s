@@ -18,10 +18,10 @@ data:
       enabled: true 
       hosts: ["https://elastic.rezz.io:9200"]
       username: "filebeat"
-      password: "$PASS"
+      password: "64122001"
       protocol: https
       ssl.enable: true
       ssl.certificate_authorities: "/etc/cert/root.pem"
       ssl.certificate: "/etc/cert/filebeat.pem"
-      ssl.key: "/etc/cert/filebeat.key"
-      ssl.verification_mode: full
+      ssl.key: "/etc/cert/filebeat.k
+      ssl.verification_mode: certificate
