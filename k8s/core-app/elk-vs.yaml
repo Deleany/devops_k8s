@@ -13,14 +13,14 @@ spec:
   - istio-egressgateway
   http:
   - match:
-    - port: 80
+    - port: 443
       gateways:
       - mesh
     route:
     - destination:
         host: istio-egressgateway.istio-system.svc.cluster.local
   - match:
-    - port: 80
+    - port: 443
       gateways:
       - istio-egressgateway
     route:
