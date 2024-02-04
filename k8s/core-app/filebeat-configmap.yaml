@@ -24,4 +24,4 @@ data:
       ssl.certificate_authorities: "/etc/cert/root.pem"
       ssl.certificate: "/etc/cert/filebeat.pem"
       ssl.key: "/etc/cert/filebeat.key"
-      ssl.verification_mode: certificate
+      ssl.verification_mode: full
