@@ -11,7 +11,7 @@ spec:
   gateways:
   - mesh
   - istio-egressgateway
-  tcp:
+  http:
   - match:
     - port: 443
       gateways:
