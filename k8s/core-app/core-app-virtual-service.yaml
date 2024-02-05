@@ -4,6 +4,8 @@ metadata:
   name: core-app-vs
   namespace: default
 spec:
+  exportTo:
+  - "."
   hosts:
   - "*"
   gateways:

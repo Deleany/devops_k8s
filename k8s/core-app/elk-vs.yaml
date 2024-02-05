@@ -7,7 +7,7 @@ spec:
   hosts:
   - "elastic.rezz.io"
   exportTo:
-  - "*"
+  - "."
   gateways:
   - mesh
   - istio-egressgateway
