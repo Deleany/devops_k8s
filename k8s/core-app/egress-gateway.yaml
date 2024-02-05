@@ -12,10 +12,10 @@ spec:
      name: http
      protocol: HTTP
    hosts:
-   - "*"
+   - "elastic.rezz.io"
  - port:
-     number: 443
+     number: 1531
      name: tcp
      protocol: TCP
    hosts:
-   - "*"
+   - "elastic.rezz.io"

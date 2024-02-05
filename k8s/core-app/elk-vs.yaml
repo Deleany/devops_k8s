@@ -11,16 +11,16 @@ spec:
   gateways:
   - mesh
   - istio-egressgateway
-  http:
+  tcp:
   - match:
-    - port: 443
+    - port: 1531
       gateways:
       - mesh
     route:
     - destination:
         host: istio-egressgateway.istio-system.svc.cluster.local
   - match:
-    - port: 443
+    - port: 1531
       gateways:
       - istio-egressgateway
     route:
