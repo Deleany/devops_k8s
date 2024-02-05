@@ -19,6 +19,7 @@ spec:
     route:
     - destination:
         host: istio-egressgateway.istio-system.svc.cluster.local
+      weight: 100
   - match:
     - port: 1531
       gateways:
@@ -28,3 +29,4 @@ spec:
         host: "elastic.rezz.io"
         port:
           number: 9200
+      weight: 100
