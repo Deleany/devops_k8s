@@ -9,5 +9,5 @@ spec:
   ports:
   - name: http-elk
     number: 9200
-    protocol: HTTP
+    protocol: TCP
   resolution: DNS
