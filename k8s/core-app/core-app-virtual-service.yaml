@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   exportTo:
-  - "."
+  - "*"
   hosts:
   - "app.rezz.io"
   gateways:
