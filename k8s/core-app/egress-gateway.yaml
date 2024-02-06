@@ -6,16 +6,11 @@ metadata:
 spec:
  selector:
    istio: egressgateway
+   app: istio-egressgateway
  servers:
  - port:
      number: 443
-     name: http
-     protocol: HTTP
-   hosts:
-   - "elastic.rezz.io"
- - port:
-     number: 1531
-     name: tcp
-     protocol: TCP
+     name: https
+     protocol: HTTPS
    hosts:
    - "elastic.rezz.io"

@@ -7,7 +7,7 @@ spec:
   hosts:
   - "elastic.rezz.io"
   ports:
-  - name: tcp-elk
+  - name: http-elk
     number: 9200
-    protocol: TCP
+    protocol: HTTP
   resolution: DNS
