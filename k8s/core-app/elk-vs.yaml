@@ -5,7 +5,7 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-  - "https://elastic.rezz.io"
+  - "http://elastic.rezz.io"
   gateways:
   - mesh
   - istio-egressgateway
