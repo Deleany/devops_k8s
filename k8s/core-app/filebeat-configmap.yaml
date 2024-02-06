@@ -16,7 +16,7 @@ data:
       fields_under_root: true
     output.elasticsearch:
       enabled: true 
-      hosts: ["https://elastic.rezz.io"]
+      hosts: "elastic.rezz.io"
       username: "filebeat"
       password: "super_strong_password"
       protocol: "https"
