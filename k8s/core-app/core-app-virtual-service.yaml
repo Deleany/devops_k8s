@@ -7,7 +7,7 @@ spec:
   exportTo:
   - "."
   hosts:
-  - "*"
+  - "app.rezz.io"
   gateways:
   - istio-ingress-gateway
   http:
