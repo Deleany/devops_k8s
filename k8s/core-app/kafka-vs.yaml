@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: gateway-elk-vs
+  name: gateway-kafka-vs
   namespace: istio-system
 spec:
   exportTo:

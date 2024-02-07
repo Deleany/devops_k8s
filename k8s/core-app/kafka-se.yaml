@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: external-host-elk-se
+  name: kafka-host-elk-se
 spec:
   exportTo:
     - "*"
