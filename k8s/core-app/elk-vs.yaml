@@ -11,7 +11,7 @@ spec:
   gateways:
   - mesh
   - istio-egressgateway
-  tcp:
+  http:
   - match:
     - port: 443
       gateways:
@@ -27,6 +27,4 @@ spec:
     route:
     - destination:
         host: "elastic.rezz.io"
-        port:
-          number: 9200
       weight: 100
