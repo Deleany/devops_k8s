@@ -27,4 +27,5 @@ spec:
     route:
     - destination:
         host: "kafka.rezz.io"
+        port: 80
       weight: 100
