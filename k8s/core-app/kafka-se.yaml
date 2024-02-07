@@ -7,7 +7,7 @@ spec:
     - "*"
   location: MESH_EXTERNAL
   hosts:
-  - "kafka1.rezz.io"
+  - "kafka.rezz.io"
   ports:
   - name: http-elk
     number: 80
