@@ -1,0 +1,30 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: gateway-elk-vs
+  namespace: istio-system
+spec:
+  exportTo:
+    - "*"
+  hosts:
+  - "kafka.rezz.io"
+  gateways:
+  - mesh
+  - istio-egressgateway
+  http:
+  - match:
+    - port: 80
+      gateways:
+      - mesh
+    route:
+    - destination:
+        host: istio-egressgateway
+      weight: 100
+  - match:
+    - port: 80
+      gateways:
+      - istio-egressgateway
+    route:
+    - destination:
+        host: "kafka.rezz.io"
+      weight: 100
