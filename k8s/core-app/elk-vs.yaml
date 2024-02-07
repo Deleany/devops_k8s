@@ -4,6 +4,8 @@ metadata:
   name: gateway-elk-vs
   namespace: istio-system
 spec:
+  exportTo:
+    - "*"
   hosts:
   - "elastic.rezz.io"
   gateways:

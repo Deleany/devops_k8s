@@ -3,11 +3,13 @@ kind: ServiceEntry
 metadata:
   name: external-host-elk-se
 spec:
+  exportTo:
+    - "*"
   location: MESH_EXTERNAL
   hosts:
   - "elastic.rezz.io"
   ports:
-  - name: http-elk
+  - name: tcp-elk
     number: 9200
     protocol: TCP
   resolution: DNS
