@@ -9,9 +9,9 @@ spec:
    app: istio-egressgateway
  servers:
  - port:
-     number: 443
-     name: TCP
-     protocol: TCP
+     number: 80
+     name: http
+     protocol: HTTP
    hosts:
    - "elastic.rezz.io"
    - "kafka.rezz.io"
