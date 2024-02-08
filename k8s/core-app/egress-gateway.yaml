@@ -9,11 +9,10 @@ spec:
     app: istio-egressgateway
   servers:
   - hosts:
-       - "elastic.rezz.io"
+    - "elastic.rezz.io"
     port:
       number: 2021
       name: https-2021
       protocol: TLS
-
     tls:
-     mode: PASSTHROUGH
+      mode: PASSTHROUGH
