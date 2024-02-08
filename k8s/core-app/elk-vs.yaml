@@ -10,7 +10,7 @@ spec:
   - "elastic.rezz.io"
   gateways:
   - mesh
-  - istio-egressgateway
+  - elk-gw
   tcp:
   - match:
     - gateways:
