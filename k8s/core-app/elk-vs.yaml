@@ -36,5 +36,6 @@ spec:
     route:
     - destination:
         host: "elastic.rezz.io"
-        port: 9200
+        port:
+          number: 9200
       weight: 100
