@@ -22,7 +22,8 @@ spec:
     route:
     - destination:
         host: istio-egressgateway
-        port: 2021
+        port:
+          number: 2021
       weight: 100
 
   - match:

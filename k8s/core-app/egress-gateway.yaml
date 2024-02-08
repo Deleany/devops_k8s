@@ -8,7 +8,7 @@ spec:
     istio: egressgateway
     app: istio-egressgateway
   servers:
-    hosts:
+  - hosts:
        - "elastic.rezz.io"
     port:
       number: 2021
