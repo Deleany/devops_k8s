@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: elk-vs
-  namespace: istio-system
+  namespace: default
 spec:
   exportTo:
     - "*"
@@ -21,14 +21,14 @@ spec:
 #        - "elastic.rezz.io"
     route:
     - destination:
-        host: istio-egressgateway
+        host: elk-gw #istio-egressgateway.istio-system.svc.cluster.local
         port:
           number: 2021
       weight: 100
 
   - match:
     - gateways:
-        - istio-egressgateway
+        - elk-gw
       port: 2021
 #      sniHosts:
 #        - "elastic.rezz.io"
