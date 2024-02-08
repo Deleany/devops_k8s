@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: gateway-elk-vs
+  name: elk-vs
   namespace: istio-system
 spec:
   exportTo:
@@ -14,6 +14,8 @@ spec:
   tls:
   - match:
     - port: 443
+      sniHosts:
+        - "elastic.rezz.io"
       gateways:
       - mesh
     route:
@@ -22,6 +24,8 @@ spec:
       weight: 100
   - match:
     - port: 443
+      sniHosts:
+        - "elastic.rezz.io"
       gateways:
       - istio-egressgateway
     route:
