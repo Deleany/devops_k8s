@@ -14,5 +14,5 @@ spec:
       number: 2021
       name: https-2021
       protocol: TCP
-    tls:
-      mode: PASSTHROUGH
+#    tls:
+#      mode: PASSTHROUGH
