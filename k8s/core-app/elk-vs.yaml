@@ -17,8 +17,8 @@ spec:
         - mesh
       port: 9200
 
-      sniHosts:
-        - "elastic.rezz.io"
+#      sniHosts:
+#        - "elastic.rezz.io"
     route:
     - destination:
         host: istio-egressgateway
@@ -30,8 +30,8 @@ spec:
     - gateways:
         - istio-egressgateway
       port: 2021
-      sniHosts:
-        - "elastic.rezz.io"
+#      sniHosts:
+#        - "elastic.rezz.io"
 
     route:
     - destination:
