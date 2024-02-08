@@ -6,7 +6,6 @@ metadata:
 spec:
   selector:
     istio: egressgateway
-    app: istio-egressgateway
   servers:
   - hosts:
     - "elastic.rezz.io"
