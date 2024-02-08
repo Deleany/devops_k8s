@@ -13,6 +13,6 @@ spec:
     port:
       number: 2021
       name: https-2021
-      protocol: TLS
+      protocol: TCP
     tls:
       mode: PASSTHROUGH
