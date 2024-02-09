@@ -14,7 +14,6 @@ spec:
       labels:
         name: filebeat-elasticsearch
     spec:
-#      serviceAccountName: filebeat
       tolerations:
       # these tolerations are to have the daemonset runnable on control plane nodes
       # remove them if your control plane nodes should not run pods
@@ -52,7 +51,7 @@ spec:
       # it may be desirable to set a high priority class to ensure that a DaemonSet Pod
       # preempts running Pods
       # priorityClassName: important
-      terminationGracePeriodSeconds: 30
+
       volumes:
       - name: logs-dir
         hostPath:
