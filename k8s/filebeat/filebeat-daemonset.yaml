@@ -50,7 +50,7 @@ spec:
           readOnly: true
 
 #        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
-        args: ["-c", "/etc/filebeat.yml", "-e"]
+        args: ["-c", "/etc/filebeat.yml", "-e",]
         command: [ "sh", "-c" ]
         env:
           - name: NODE_NAME
