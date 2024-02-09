@@ -4,15 +4,15 @@ metadata:
   name: filebeat-elasticsearch
   namespace: default
   labels:
-    k8s-app: filebeat-logging
+    name: filebeat-elasticsearch
 spec:
   selector:
     matchLabels:
-      k8s-app: filebeat
+      name: filebeat-elasticsearch
   template:
     metadata:
       labels:
-        k8s-app: filebeat
+        name: filebeat-elasticsearch
     spec:
 #      serviceAccountName: filebeat
       tolerations:
@@ -49,8 +49,6 @@ spec:
         args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
         command: [ "sh", "-c" ]
 
-        securityContext:
-          runAsUser: 0
       # it may be desirable to set a high priority class to ensure that a DaemonSet Pod
       # preempts running Pods
       # priorityClassName: important
