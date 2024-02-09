@@ -11,5 +11,5 @@ spec:
   ports:
   - name: https-elk
     number: 9200
-    protocol: HTTPS
+    protocol: TCP
   resolution: DNS
