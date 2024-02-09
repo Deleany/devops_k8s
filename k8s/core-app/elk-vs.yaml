@@ -11,7 +11,7 @@ spec:
   gateways:
   - mesh
   - elk-gw
-  tlx:
+  tls:
   - match:
     - gateways:
         - mesh
