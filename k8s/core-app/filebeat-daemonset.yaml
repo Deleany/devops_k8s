@@ -32,6 +32,7 @@ spec:
           requests:
             cpu: 100m
             memory: 200Mi
+
         volumeMounts:
         - name: logs-dir
           mountPath: /var/log
@@ -43,6 +44,7 @@ spec:
         - name: filebeat-config
           mountPath: /etc/filebeat
           readOnly: true
+
         args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
         command: [ "sh", "-c" ]
       # it may be desirable to set a high priority class to ensure that a DaemonSet Pod
