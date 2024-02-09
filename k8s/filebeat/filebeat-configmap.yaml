@@ -6,14 +6,12 @@ metadata:
 data:
   filebeat.yml: |
     filebeat.inputs:
-    - type: container
+    - type: logs
       enabled: true
       paths:
       - /var/log/containers/*.log
       json.keys_under.root: true
       fields_under_root: true
-      fields:
-        index_prefix: k8s-logs
     output.elasticsearch:
       enabled: true 
       hosts: ["elastic.rezz.io:9200"]
