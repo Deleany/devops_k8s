@@ -35,7 +35,7 @@ spec:
 
         volumeMounts:
         - name: logs-dir
-          mountPath: /var/log/containers
+          mountPath: /var/log/containers/
 
         - name: filebeat-cert-conf
           mountPath: /etc/cert
@@ -47,6 +47,9 @@ spec:
 
         args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
         command: [ "sh", "-c" ]
+
+        securityContext:
+          runAsUser: 0
       # it may be desirable to set a high priority class to ensure that a DaemonSet Pod
       # preempts running Pods
       # priorityClassName: important
@@ -54,7 +57,7 @@ spec:
       volumes:
       - name: logs-dir
         hostPath:
-          path: /var/log/containers
+          path: /var/log/containers/
 
       - name: filebeat-cert-conf
         configMap:
