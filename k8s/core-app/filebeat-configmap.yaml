@@ -11,7 +11,7 @@ data:
     - type: log
       enabled: true
       paths:
-      - /var/log/*/*.log
+      - /var/log/containers/*.log
       json.keys_under.root: true
       fields_under_root: true
     output.elasticsearch:

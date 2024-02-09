@@ -35,7 +35,7 @@ spec:
 
         volumeMounts:
         - name: logs-dir
-          mountPath: /var/log
+          mountPath: /var/log/containers
 
         - name: filebeat-cert-conf
           mountPath: /etc/cert
@@ -54,7 +54,7 @@ spec:
       volumes:
       - name: logs-dir
         hostPath:
-          path: /var/log
+          path: /var/log/containers
 
       - name: filebeat-cert-conf
         configMap:
