@@ -8,8 +8,9 @@ data:
     logging.level: info
     logging.to_stderr: true
     filebeat.inputs:
-    - type: log
+    - type: container
       enabled: true
+      stream: stdout
       paths:
       - /var/log/containers/*.log
       json.keys_under.root: true
