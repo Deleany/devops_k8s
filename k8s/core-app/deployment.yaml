@@ -113,25 +113,25 @@ spec:
               - key: "game-special-key"
                 path: "game-special-key"
 
-        - name: filebeat-config
-          configMap:
-            name: filebeat-config
-            items:
-            - key: "filebeat.yml"
-              path: "filebeat.yml"
-
-        - name: filebeat-cert-conf
-          configMap:
-            name: filebeat-cert-conf
-            items:
-              - key: "root.pem"
-                path: "root.pem"
-
-              - key: "filebeat.pem"
-                path: "filebeat.pem"
-
-              - key: "filebeat.key"
-                path: "filebeat.key"
+#        - name: filebeat-config
+#          configMap:
+#            name: filebeat-config
+#            items:
+#            - key: "filebeat.yml"
+#              path: "filebeat.yml"
+#
+#        - name: filebeat-cert-conf
+#          configMap:
+#            name: filebeat-cert-conf
+#            items:
+#              - key: "root.pem"
+#                path: "root.pem"
+#
+#              - key: "filebeat.pem"
+#                path: "filebeat.pem"
+#
+#              - key: "filebeat.key"
+#                path: "filebeat.key"
 
         - name: logs-dir
           emptyDir: {}
