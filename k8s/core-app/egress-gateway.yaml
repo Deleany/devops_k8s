@@ -11,7 +11,7 @@ spec:
     - "elastic.rezz.io"
     port:
       number: 2021
-      name: tcp-2021
-      protocol: TCP
-#    tls:
-#      mode: PASSTHROUGH
+      name: tls-2021
+      protocol: TLS
+    tls:
+      mode: PASSTHROUGH
