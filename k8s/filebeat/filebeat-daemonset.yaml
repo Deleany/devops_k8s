@@ -49,8 +49,8 @@ spec:
           mountPath: /etc/filebeat
           readOnly: true
 
-#        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
-        args: ["-c", "/etc/filebeat.yml", "-e",]
+        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
+
         command: [ "sh", "-c" ]
         env:
           - name: NODE_NAME
