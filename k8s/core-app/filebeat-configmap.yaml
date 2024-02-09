@@ -5,16 +5,15 @@ metadata:
   namespace: default
 data:
   filebeat.yml: |
-    logging.level: info
-    logging.to_stderr: true
     filebeat.inputs:
     - type: container
       enabled: true
-      stream: stdout
       paths:
       - /var/log/containers/*.log
       json.keys_under.root: true
       fields_under_root: true
+      fields:
+        index_prefix: k8s-logs
     output.elasticsearch:
       enabled: true 
       hosts: ["elastic.rezz.io:9200"]
