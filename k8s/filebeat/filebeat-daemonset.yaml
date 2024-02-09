@@ -15,6 +15,9 @@ spec:
         name: filebeat-elasticsearch
     spec:
       serviceAccountName: filebeat
+      terminationGracePeriodSeconds: 30
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       tolerations:
       # these tolerations are to have the daemonset runnable on control plane nodes
       # remove them if your control plane nodes should not run pods
@@ -46,8 +49,12 @@ spec:
           mountPath: /etc/filebeat
           readOnly: true
 
-        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
-        command: [ "sh", "-c" ]
+#        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
+        args: [
+          "-c", "/etc/filebeat.yml",
+          "-e",
+        ]
+#        command: [ "sh", "-c" ]
         env:
           - name: NODE_NAME
             valueFrom:
