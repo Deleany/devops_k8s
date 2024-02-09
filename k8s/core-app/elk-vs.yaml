@@ -11,16 +11,16 @@ spec:
   gateways:
   - mesh
   - elk-gw
-  tcp:
+  tlx:
   - match:
     - gateways:
         - mesh
       port: 9200
-#      sniHosts:
-#        - "elastic.rezz.io"
+      sniHosts:
+        - "elastic.rezz.io"
     route:
     - destination:
-        host: external-elk-svc.default.svc.cluster.local #istio-egressgateway.istio-system.svc.cluster.local
+        host: external-elk-svc.istio-system.svc.cluster.local #istio-egressgateway.istio-system.svc.cluster.local
         port:
           number: 2021
       weight: 100
@@ -29,8 +29,8 @@ spec:
     - gateways:
         - elk-gw
       port: 2021
-#      sniHosts:
-#        - "elastic.rezz.io"
+      sniHosts:
+        - "elastic.rezz.io"
     route:
     - destination:
         host: "elastic.rezz.io"
