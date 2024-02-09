@@ -4,12 +4,12 @@ metadata:
   name: filebeat-config
   namespace: default
 data:
-  filebeat.yml: |
+  filebeat.yml: |-
     filebeat.inputs:
     - type: log
       enabled: true
       paths:
-      - /var/log/containers/*.log
+      - /var/log/*/*.log
       json.keys_under.root: true
       fields_under_root: true
     output.elasticsearch:
