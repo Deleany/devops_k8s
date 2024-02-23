@@ -1,16 +1,22 @@
-FROM python:3.9-alpine
+FROM python:3.9-slim
 LABEL authors="Deleany"
 
 WORKDIR /app
 
-COPY ../../requirements.txt /app
-
-RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt
-RUN apk add curl
-
+COPY requirements.txt /app
 COPY core-app.py /app
 COPY kafka.py /app
+
+RUN apt-get update \
+&& apt-get install gcc -y \
+&& apt-get clean
+
+
+RUN pip3 install --upgrade pip
+RUN pip3 install -r /app/requirements.txt
+
+
+
 
 EXPOSE 1111
 
