@@ -11,5 +11,5 @@ spec:
   ports:
   - name: http-kafka
     number: 9092
-    protocol: HTTP
+    protocol: TCP
   resolution: DNS
