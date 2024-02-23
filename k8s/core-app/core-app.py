@@ -1,7 +1,11 @@
 import os
 import requests
+import kafka
+import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
+
+
 app = FastAPI()
 
 __POD_NAME = os.getenv('__POD_NAME')
@@ -16,10 +20,21 @@ async def get_from_root():
 
 
 
-@app.get("/app", )
+@app.get("/app", response_class=PlainTextResponse)
 async def get_from_app():
     data = requests.get(__URL_NAME)
     return data.content
 
 
+@app.post("/kafka")
+async def write_to(item):
+    kafka.write_message(item)
 
+
+@app.get("/kafka")
+async def get_from():
+    data = kafka.read_message()
+    return data
+
+
+uvicorn.run(app)
