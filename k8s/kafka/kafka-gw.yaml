@@ -11,7 +11,7 @@ spec:
     - "kafka.rezz.io"
     port:
       number: 13377
-      name: tls-13377
-      protocol: TLS
+      name: tcp-13377
+      protocol: TCP
     tls:
       mode: PASSTHROUGH

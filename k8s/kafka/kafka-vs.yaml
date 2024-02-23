@@ -11,7 +11,7 @@ spec:
   gateways:
   - mesh
   - elk-gw
-  tls:
+  tcp:
   - match:
     - port: 9092
       gateways:
