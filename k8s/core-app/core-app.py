@@ -30,11 +30,3 @@ async def get_from_app():
 async def write_to(item):
     kafka.write_message(item)
 
-
-@app.get("/kafka")
-async def get_from():
-    data = kafka.read_message()
-    return data
-
-
-uvicorn.run(app)
