@@ -5,8 +5,8 @@ WORKDIR /app
 
 COPY ../../requirements.txt /app
 
-RUN pip3 --no-cache-dir install --upgrade pip && \
-    pip3 --no-cache-dir install -r requirements.txt
+RUN pip3 --no-cache-dir install --upgrade pip
+RUN pip3 --no-cache-dir install -r requirements.txt
 RUN apk --no-cache add curl
 
 COPY core-app.py /app
