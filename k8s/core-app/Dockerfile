@@ -10,6 +10,7 @@ RUN pip3 --no-cache-dir install --upgrade pip && \
 RUN apk --no-cache add curl
 
 COPY core-app.py /app
+COPY kafka.py /app
 
 EXPOSE 1111
 
