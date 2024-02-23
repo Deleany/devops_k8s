@@ -10,7 +10,7 @@ spec:
   - "kafka.rezz.io"
   gateways:
   - mesh
-  - external-kafka-svc
+  - kafka-gw
   tcp:
   - match:
     - port: 9092
@@ -23,7 +23,7 @@ spec:
   - match:
     - port: 13377
       gateways:
-      - external-kafka-svc
+      - kafka-gw
     route:
     - destination:
         host: "kafka.rezz.io"
