@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: kafka-host-elk-se
+  name: kafka-se
 spec:
   exportTo:
     - "*"
@@ -9,7 +9,7 @@ spec:
   hosts:
   - "kafka.rezz.io"
   ports:
-  - name: http-elk
-    number: 80
+  - name: http-kafka
+    number: 9092
     protocol: HTTP
   resolution: DNS

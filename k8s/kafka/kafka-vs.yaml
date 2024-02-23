@@ -10,23 +10,23 @@ spec:
   - "kafka.rezz.io"
   gateways:
   - mesh
-  - istio-egressgateway
+  - elk-gw
   http:
   - match:
-    - port: 80
+    - port: 9092
       gateways:
       - mesh
     route:
     - destination:
-        host: istio-egressgateway
+        host: external-kafka-svc.istio-system.svc.cluster.local
       weight: 100
   - match:
-    - port: 80
+    - port: 13377
       gateways:
-      - istio-egressgateway
+      - elk-gw
     route:
     - destination:
         host: "kafka.rezz.io"
         port:
-          number: 80
+          number: 9092
       weight: 100

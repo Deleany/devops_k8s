@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: istio-system
+  name: external-kafka-svc
+spec:
+  selector:
+    istio: egressgateway
+  ports:
+  - name: tcp-13377
+    port: 13377
+    targetPort: 13377

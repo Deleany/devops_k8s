@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: kafka-gw
+  namespace: istio-system
+spec:
+  selector:
+    istio: egressgateway
+  servers:
+  - hosts:
+    - "kafka.rezz.io"
+    port:
+      number: 13377
+      name: tls-13377
+      protocol: TLS
+    tls:
+      mode: PASSTHROUGH
