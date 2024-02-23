@@ -5,9 +5,9 @@ WORKDIR /app
 
 COPY ../../requirements.txt /app
 
-RUN pip3 --no-cache-dir install --upgrade pip
-RUN pip3 --no-cache-dir install -r requirements.txt
-RUN apk --no-cache add curl
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
+RUN apk add curl
 
 COPY core-app.py /app
 COPY kafka.py /app
