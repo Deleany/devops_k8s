@@ -1,6 +1,6 @@
-from confluent_kafka import Producer, Consumer, KafkaError, KafkaException
+from confluent_kafka import Producer, Consumer
 import socket
-import sys
+
 
 conf = {'bootstrap.servers': '192.168.88.103:9092',
         'client.id': socket.gethostname()}

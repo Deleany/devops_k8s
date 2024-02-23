@@ -1,7 +1,6 @@
 import os
 import requests
 import kafka
-import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 
@@ -17,7 +16,6 @@ __CLUSTER_DNS = "default.svc.cluster.local"
 @app.get("/", response_class=PlainTextResponse)
 async def get_from_root():
     return f'Hello from {__POD_NAME}'
-
 
 
 @app.get("/app", response_class=PlainTextResponse)
