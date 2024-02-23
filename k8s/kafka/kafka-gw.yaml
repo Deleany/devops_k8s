@@ -13,5 +13,3 @@ spec:
       number: 13377
       name: tcp-13377
       protocol: TCP
-    tls:
-      mode: PASSTHROUGH

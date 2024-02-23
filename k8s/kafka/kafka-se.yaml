@@ -9,7 +9,7 @@ spec:
   hosts:
   - "kafka.rezz.io"
   ports:
-  - name: http-kafka
+  - name: tcp-kafka
     number: 9092
     protocol: TCP
   resolution: DNS
