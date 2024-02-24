@@ -16,6 +16,7 @@ spec:
     metadata:
       labels:
         app: core-app
+        version: v5
 
     spec:
       containers:
