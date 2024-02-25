@@ -10,5 +10,5 @@ spec:
     app: app
   ports:
   - name: http-app
-    port: 8080
+    port: 8081
     targetPort: 2020
