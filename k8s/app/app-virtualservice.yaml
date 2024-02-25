@@ -5,11 +5,11 @@ metadata:
   namespace: default
 spec:
   exportTo:
-  - "*"
+  - "."
   hosts:
   - "app1.rezz.io"
   gateways:
-  - istio-ingress-gateway
+  - ingressgateway-rezz
   http:
   - match:
     - uri:
@@ -17,4 +17,5 @@ spec:
     route:
     - destination:
         host: app-svc.default.svc.cluster.local
+        subset: app-subset
       weight: 100
