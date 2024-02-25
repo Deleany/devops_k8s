@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   namespace: default
+  name: ingressgateway-rezz-service-account
   labels:
     app: ingressgateway-rezz
     install.operator.istio.io/owning-resource: installed-state
@@ -12,5 +13,5 @@ metadata:
     operator.istio.io/managed: Reconcile
     operator.istio.io/version: 1.20.2
     release: istio
-  name: ingressgateway-rezz-service-account
+
 
