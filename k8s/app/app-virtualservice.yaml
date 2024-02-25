@@ -9,7 +9,7 @@ spec:
   hosts:
   - "app1.rezz.io"
   gateways:
-  - ingressgateway-rezz
+  - istio-ingress-gateway
   http:
   - match:
     - uri:
