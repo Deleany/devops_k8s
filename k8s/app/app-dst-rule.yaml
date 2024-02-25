@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: app-dst-rule
+spec:
+  host: app-svc
+  subsets:
+  - name: app-subset
+    labels:
+      app: core-app
+    trafficPolicy:
+        tls:
+          mode: ISTIO_MUTUAL
