@@ -8,7 +8,7 @@ data:
     logging.level: info
     logging.to_stderr: true
     filebeat.inputs:
-    - type: container
+    - type: file
       enabled: true
       paths:
       - /tmp/logs/*.log
