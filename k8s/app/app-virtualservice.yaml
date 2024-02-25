@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: app-vs
+  namespace: default
+spec:
+  exportTo:
+  - "*"
+  hosts:
+  - "app1.rezz.io"
+  gateways:
+  - ingressgateway-rezz
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: app-svc.default.svc.cluster.local
+      weight: 100
