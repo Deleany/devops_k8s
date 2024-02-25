@@ -11,6 +11,7 @@ spec:
   selector:
     matchLabels:
       app: core-app
+      version: v5
 
   template:
     metadata:
@@ -53,56 +54,56 @@ spec:
             mountPath: "/config"
             readOnly: true
 
-#          - name: filebeat-config
-#            mountPath: /etc/filebeat
-#            readOnly: true
+          - name: filebeat-config
+            mountPath: /etc/filebeat
+            readOnly: true
 
           - name: logs-dir
             mountPath: /tmp/logs
             readOnly: false
 
-#      - name: filebeat-sidecar
-#        image: deleany/file:latest
-#        imagePullPolicy: Always
-#        resources:
-#          requests:
-#            cpu: 100m
-#            memory: 200Mi
-#          limits:
-#            cpu: 200m
-#            memory: 400Mi
-#
-#        env:
-#        - name: __POD_NAME
-#          valueFrom:
-#            fieldRef:
-#              fieldPath: metadata.name
-#        - name: __POD_IP
-#          valueFrom:
-#            fieldRef:
-#              fieldPath: status.podIP
-#
-#        - name: __PORT_NAME
-#          valueFrom:
-#            configMapKeyRef:
-#              name: core-app-config
-#              key: port
-#
-#        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
-#        command: [ "sh", "-c" ]
-#
-#        volumeMounts:
-#          - name: filebeat-config
-#            mountPath: /etc/filebeat
-#            readOnly: true
-#
-#          - name: filebeat-cert-conf
-#            mountPath: /etc/cert
-#            readOnly: true
-#
-#          - name: logs-dir
-#            mountPath: /tmp/logs
-#            readOnly: false
+      - name: filebeat-sidecar
+        image: deleany/file:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 200m
+            memory: 400Mi
+
+        env:
+        - name: __POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: __POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+
+        - name: __PORT_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: core-app-config
+              key: port
+
+        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
+        command: [ "sh", "-c" ]
+
+        volumeMounts:
+          - name: filebeat-config
+            mountPath: /etc/filebeat
+            readOnly: true
+
+          - name: filebeat-cert-conf
+            mountPath: /etc/cert
+            readOnly: true
+
+          - name: logs-dir
+            mountPath: /tmp/logs
+            readOnly: false
 
       volumes:
         - name: core-app-vol
@@ -114,25 +115,25 @@ spec:
               - key: "game-special-key"
                 path: "game-special-key"
 
-#        - name: filebeat-config
-#          configMap:
-#            name: filebeat-config
-#            items:
-#            - key: "filebeat.yml"
-#              path: "filebeat.yml"
-#
-#        - name: filebeat-cert-conf
-#          configMap:
-#            name: filebeat-cert-conf
-#            items:
-#              - key: "root.pem"
-#                path: "root.pem"
-#
-#              - key: "filebeat.pem"
-#                path: "filebeat.pem"
-#
-#              - key: "filebeat.key"
-#                path: "filebeat.key"
+        - name: filebeat-config
+          configMap:
+            name: filebeat-config
+            items:
+            - key: "filebeat.yml"
+              path: "filebeat.yml"
+
+        - name: filebeat-cert-conf
+          configMap:
+            name: filebeat-cert-conf
+            items:
+              - key: "root.pem"
+                path: "root.pem"
+
+              - key: "filebeat.pem"
+                path: "filebeat.pem"
+
+              - key: "filebeat.key"
+                path: "filebeat.key"
 
         - name: logs-dir
           emptyDir: {}
