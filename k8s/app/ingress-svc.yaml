@@ -10,28 +10,10 @@ spec:
     app: ingressgateway-rezz
   ports:
   - name: status-port
-    nodePort: 30708
     port: 15021
     protocol: TCP
     targetPort: 15021
-  - name: http2
-    nodePort: 31242
+  - name: http
     port: 80
-    protocol: TCP
-    targetPort: 8080
-  - name: https
-    nodePort: 31351
-    port: 443
-    protocol: TCP
-    targetPort: 8443
-  - name: tcp
-    nodePort: 30136
-    port: 31400
-    protocol: TCP
-    targetPort: 31400
-  - name: tls
-    nodePort: 31701
-    port: 15443
-    protocol: TCP
-    targetPort: 15443
+    protocol: HTTP
   type: LoadBalancer
