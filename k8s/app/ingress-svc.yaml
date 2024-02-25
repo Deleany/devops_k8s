@@ -15,5 +15,5 @@ spec:
     targetPort: 15021
   - name: http
     port: 80
-    protocol: HTTP
+    protocol: TCP
   type: LoadBalancer
