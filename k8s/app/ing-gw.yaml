@@ -1,10 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "1"
   labels:
-    app: istio-ingressgateway
+    app: ingressgateway-rezz
     install.operator.istio.io/owning-resource: installed-state
     install.operator.istio.io/owning-resource-namespace: istio-system
     istio: ingressgateway
@@ -13,7 +11,7 @@ metadata:
     operator.istio.io/managed: Reconcile
     operator.istio.io/version: 1.20.2
     release: istio
-  name: default-istio-ingressgateway
+  name: ingressgateway-rezz
   namespace: default
 spec:
   progressDeadlineSeconds: 600
@@ -21,8 +19,8 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: istio-ingressgateway
-      istio: ingressgateway
+      app: ingressgateway-rezz
+      istio: ingressgateway-rezz
   strategy:
     rollingUpdate:
       maxSurge: 100%
@@ -38,15 +36,15 @@ spec:
         sidecar.istio.io/inject: "false"
       creationTimestamp: null
       labels:
-        app: istio-ingressgateway
+        app: ingressgateway-rezz
         chart: gateways
         heritage: Tiller
         install.operator.istio.io/owning-resource: unknown
-        istio: ingressgateway
+        istio: ingressgateway-rezz
         istio.io/rev: default
         operator.istio.io/component: IngressGateways
         release: istio
-        service.istio.io/canonical-name: istio-ingressgateway
+        service.istio.io/canonical-name: ingressgateway-rezz
         service.istio.io/canonical-revision: latest
         sidecar.istio.io/inject: "false"
     spec:
@@ -104,7 +102,7 @@ spec:
               apiVersion: v1
               fieldPath: spec.serviceAccountName
         - name: ISTIO_META_WORKLOAD_NAME
-          value: istio-ingressgateway
+          value: ingressgateway-rezz
         - name: ISTIO_META_OWNER
           value: kubernetes://apis/apps/v1/namespaces/istio-system/deployments/istio-ingressgateway
         - name: ISTIO_META_MESH_ID
@@ -249,22 +247,3 @@ spec:
           defaultMode: 420
           optional: true
           secretName: istio-ingressgateway-ca-certs
-status:
-  availableReplicas: 1
-  conditions:
-  - lastTransitionTime: "2024-01-19T18:40:11Z"
-    lastUpdateTime: "2024-01-19T18:40:17Z"
-    message: ReplicaSet "istio-ingressgateway-778f947c84" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  - lastTransitionTime: "2024-02-25T07:35:28Z"
-    lastUpdateTime: "2024-02-25T07:35:28Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  observedGeneration: 1
-  readyReplicas: 1
-  replicas: 1
-  updatedReplicas: 1
