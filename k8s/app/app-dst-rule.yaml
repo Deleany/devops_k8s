@@ -7,7 +7,7 @@ spec:
   subsets:
   - name: app-subset
     labels:
-      app: core-app
+      app: app
     trafficPolicy:
         tls:
           mode: ISTIO_MUTUAL
