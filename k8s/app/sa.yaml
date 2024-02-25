@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   namespace: default
-  name: ingressgateway-rezz-service-account
+  name: istio-ingressgateway-service-account
   labels:
     app: ingressgateway-rezz
     install.operator.istio.io/owning-resource: installed-state
