@@ -23,7 +23,6 @@ spec:
     matchLabels:
       app: egressgateway-rezz
       istio: egressgateway-rezz
-      version: 1
   strategy:
     rollingUpdate:
       maxSurge: 100%
@@ -50,7 +49,6 @@ spec:
         service.istio.io/canonical-name: istio-egressgateway
         service.istio.io/canonical-revision: latest
         sidecar.istio.io/inject: "false"
-        version: 1
     spec:
       affinity:
         nodeAffinity: {}
