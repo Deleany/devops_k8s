@@ -169,8 +169,6 @@ spec:
         - mountPath: /etc/istio/config
           name: config-volume
         - mountPath: /var/run/secrets/istio
-          name: config-volume
-        - mountPath: /var/run/secrets/istio
           name: istiod-ca-cert
         - mountPath: /var/run/secrets/tokens
           name: istio-token
