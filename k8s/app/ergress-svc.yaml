@@ -1,24 +1,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: rezz-ingress-svc
+  name: rezz-egress-svc
   namespace: default
   labels:
-    app: ingressgateway-rezz
+    app: egressgateway-rezz
     install.operator.istio.io/owning-resource: installed-state
     install.operator.istio.io/owning-resource-namespace: default
-    istio: ingressgateway-rezz
+    istio: egressgateway-rezz
     istio.io/rev: default
-    operator.istio.io/component: IngressGateways
+    operator.istio.io/component: EgressGateways
     operator.istio.io/managed: Reconcile
     operator.istio.io/version: 1.20.2
     release: istio
 spec:
   ports:
-  - name: status-port
-    port: 15021
-    protocol: TCP
-    targetPort: 15021
   - name: http2
     port: 80
     protocol: TCP
@@ -27,17 +23,8 @@ spec:
     port: 443
     protocol: TCP
     targetPort: 8443
-  - name: tcp
-    port: 31400
-    protocol: TCP
-    targetPort: 31400
-  - name: tls
-    port: 15443
-    protocol: TCP
-    targetPort: 15443
   selector:
-    app: ingressgateway-rezz
-    istio: ingressgateway-rezz
+    app: egressgateway-rezz
+    istio: egressgateway-rezz
   sessionAffinity: None
-  type: LoadBalancer
-
+  type: ClusterIP
