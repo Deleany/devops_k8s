@@ -14,3 +14,8 @@ spec:
       protocol: HTTP
     hosts:
     - "*"
+    tls:
+      mode: SIMPLE
+      caCertificates: /root/root.pem
+      serverCertificate: /root/rezz.pem
+      privateKey: /root/rezz.key
