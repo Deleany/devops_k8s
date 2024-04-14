@@ -7,7 +7,7 @@ spec:
   hosts:
   - "argocd.rezz.io"
   gateways:
-  - istio-ingress-gateway
+  - ingressgateway-rezz
   http:
   - match:
     - uri:
