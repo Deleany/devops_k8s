@@ -7,6 +7,7 @@ spec:
   selector:
     app: istio-ingressgateway
     istio: ingressgateway
+
   servers:
   - port:
       number: 80
@@ -19,8 +20,8 @@ spec:
       number: 443
       name: https-443
       protocol: HTTPS
-      hosts:
-      - "argocd.rezz.io"
-      tls:
-        mode: SIMPLE
-        credentialName: argocd-server-tls
+    hosts:
+    - "argocd.rezz.io"
+    tls:
+      mode: SIMPLE
+      credentialName: argocd-server-tls
