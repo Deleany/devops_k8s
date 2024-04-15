@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: argocd-tls-vs
-  namespace: default
+  namespace: istio-system
 spec:
   hosts:
   - "argocd.rezz.io"
