@@ -11,8 +11,8 @@ spec:
   tls:
   - match:
     - port: 443
-    - uri:
-        prefix: /
+      sniHosts:
+      - "argocd.rezz.io"
     route:
     - destination:
         host: argocd-server.argocd.svc.cluster.local
