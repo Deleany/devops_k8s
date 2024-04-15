@@ -14,8 +14,12 @@ spec:
       protocol: HTTP
     hosts:
     - "argocd.rezz.io"
-#    tls:
-#      mode: SIMPLE
-#      caCertificates: /root/root.pem
-#      serverCertificate: /root/rezz.pem
-#      privateKey: /root/rezz.key
+  - port:
+      number: 443
+      name: https-443
+      protocol: HTTPS
+      hosts:
+        - "argocd.rezz.io"
+      tls:
+        mode: SIMPLE
+        credentialName: argocd-server-tls
