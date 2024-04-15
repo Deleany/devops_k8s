@@ -2,12 +2,12 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: argocd-vs
-  namespace: default
+  namespace: argocd
 spec:
   hosts:
   - "argocd.rezz.io"
   gateways:
-  - ingressgateway-rezz
+  - istio-ingress-gateway
   http:
   - match:
     - uri:

@@ -2,12 +2,12 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: kiali-vs
-  namespace: default
+  namespace: istio-system
 spec:
   hosts:
   - "kiali.rezz.io"
   gateways:
-  - ingressgateway-rezz
+  - istio-ingress-gateway
   http:
   - match:
     - uri:

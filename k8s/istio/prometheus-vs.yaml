@@ -2,12 +2,12 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: prometheus-vs
-  namespace: default
+  namespace: istio-system
 spec:
   hosts:
   - "prometheus.rezz.io"
   gateways:
-  - ingressgateway-rezz
+  - istio-ingress-gateway
   http:
   - match:
     - uri:

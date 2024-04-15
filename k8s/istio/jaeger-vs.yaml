@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: jaeger-vs
-  namespace: default
+  namespace: istio-system
 spec:
   hosts:
   - "jaeger.rezz.io"
