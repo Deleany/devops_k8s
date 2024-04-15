@@ -6,7 +6,7 @@ metadata:
 spec:
   exportTo:
     - "."
-  host: argocd-server
+  host: argocd-server.argocd.svc.cluster.local
   trafficPolicy:
     tls:
       mode: SIMPLE
