@@ -14,6 +14,7 @@ spec:
       protocol: HTTP
     hosts:
     - "argocd.rezz.io"
+
   - port:
       number: 443
       name: https-443

@@ -10,6 +10,7 @@ spec:
   - argocd-gw
   http:
   - match:
+    - port: 80
     - uri:
         prefix: /
     route:
