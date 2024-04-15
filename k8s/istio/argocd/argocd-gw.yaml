@@ -23,5 +23,4 @@ spec:
     hosts:
     - "argocd.rezz.io"
     tls:
-      mode: SIMPLE
-      credentialName: argocd-server-tls
+      mode: PASSTHROUGH
