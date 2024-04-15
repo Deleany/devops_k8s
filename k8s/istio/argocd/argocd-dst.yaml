@@ -2,7 +2,10 @@ apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
   name: argocd-dst-rule
+  namespace: istio-system
 spec:
+  exportTo:
+    - "."
   host: argocd-server
   trafficPolicy:
     tls:

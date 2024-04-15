@@ -4,8 +4,6 @@ metadata:
   name: argocd-gw
   namespace: istio-system
 spec:
-  exportTo:
-  - "."
   selector:
     app: istio-ingressgateway
     istio: ingressgateway
