@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: default-gateway
+  name: core-app1-gw
   namespace: default
 spec:
   selector:
