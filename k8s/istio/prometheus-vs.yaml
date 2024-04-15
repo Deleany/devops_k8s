@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: prometheus-vs
-  namespace: istio-system
+  namespace: default
 spec:
   hosts:
   - "prometheus.rezz.io"
