@@ -20,7 +20,7 @@ spec:
       name: https-443
       protocol: HTTPS
       hosts:
-        - "argocd.rezz.io"
+      - "argocd.rezz.io"
       tls:
         mode: SIMPLE
         credentialName: argocd-server-tls
