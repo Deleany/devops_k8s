@@ -7,7 +7,7 @@ spec:
   hosts:
   - "kiali.rezz.io"
   gateways:
-  - istio-ingress-gateway
+  - kiali-gw
   http:
   - match:
     - uri:
