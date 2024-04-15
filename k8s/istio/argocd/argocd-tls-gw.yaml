@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: argocd-vs
+  namespace: default
+spec:
+  hosts:
+  - "argocd.rezz.io"
+  gateways:
+  - argocd-gw
+  tls:
+  - match:
+    - port: 443
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: argocd-server.argocd.svc.cluster.local
+        port:
+          number: 443
+      weight: 100
