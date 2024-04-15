@@ -5,9 +5,8 @@ metadata:
   namespace: istio-system
 spec:
   selector:
-    app: istio-ingressgateway
+#    app: istio-ingressgateway
     istio: ingressgateway
-
   servers:
   - port:
       number: 80
@@ -23,8 +22,5 @@ spec:
     hosts:
     - "argocd.rezz.io"
     tls:
-      mode: PASSTHROUGH
-#      mode: SIMPLE
-#      caCertificates: /etc/istio/ingressgateway-certs/root.pem
-#      serverCertificate: /etc/istio/ingressgateway-certs/argocd.pem
-#      privateKey: /etc/istio/ingressgateway-certs/argocd.key
+      mode: SIMPLE
+      credentialName: argocd-server-tls
