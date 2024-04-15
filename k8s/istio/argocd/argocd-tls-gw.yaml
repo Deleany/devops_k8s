@@ -4,6 +4,8 @@ metadata:
   name: argocd-tls-vs
   namespace: istio-system
 spec:
+  exportTo:
+    - "."
   hosts:
   - "argocd.rezz.io"
   gateways:
