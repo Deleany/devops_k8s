@@ -16,6 +16,5 @@ spec:
     - "argocd.rezz.io"
     tls:
       mode: SIMPLE
-      caCertificates: /etc/istio/ingressgateway-certs/root.pem
-      serverCertificate: /etc/istio/ingressgateway-certs/argocd.pem
-      privateKey: /etc/istio/ingressgateway-certs/argocd.key
+      serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
+      privateKey: /etc/istio/ingressgateway-certs/tls.key
