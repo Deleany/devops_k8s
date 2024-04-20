@@ -5,16 +5,9 @@ metadata:
   namespace: istio-system
 spec:
   selector:
-#    app: istio-ingressgateway
+    app: istio-ingressgateway
     istio: ingressgateway
   servers:
-  - port:
-      number: 80
-      name: http-80
-      protocol: HTTP
-    hosts:
-    - "argocd.rezz.io"
-
   - port:
       number: 443
       name: https-443
