@@ -4,6 +4,8 @@ metadata:
   name: prometheus-vs
   namespace: istio-system
 spec:
+  exportTo:
+    - "."
   hosts:
   - "prometheus.rezz.io"
   gateways:
@@ -11,6 +13,7 @@ spec:
   http:
   - match:
     - uri:
+        port: 443
         prefix: /
     route:
     - destination:

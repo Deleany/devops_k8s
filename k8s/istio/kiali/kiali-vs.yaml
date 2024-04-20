@@ -4,6 +4,8 @@ metadata:
   name: kiali-vs
   namespace: istio-system
 spec:
+  exportTo:
+    - "."
   hosts:
   - "kiali.rezz.io"
   gateways:
@@ -11,6 +13,7 @@ spec:
   http:
   - match:
     - uri:
+        port: 443
         prefix: /
     route:
     - destination:
