@@ -22,6 +22,7 @@ spec:
     hosts:
     - "argocd.rezz.io"
     tls:
-      mode: PASSTHROUGH
-#      mode: SIMPLE
-#      credentialName: argocd-server-tls
+      mode: SIMPLE
+      caCertificates: /etc/istio/ingressgateway-certs/root.pem
+      clientCertificate: /etc/istio/ingressgateway-certs/argocd.pem
+      privateKey: /etc/istio/ingressgateway-certs/argocd.key
