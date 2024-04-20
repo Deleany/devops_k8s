@@ -7,9 +7,9 @@ spec:
   exportTo:
   - "."
   hosts:
-  - "app1.rezz.io"
+  - "app.rezz.io"
   gateways:
-  - default-gateway
+  - app-gw
   http:
   - match:
     - uri:
