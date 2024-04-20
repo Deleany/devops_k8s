@@ -2,19 +2,17 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: grafana-vs
-  namespace: default
+  namespace: istio-system
 spec:
   hosts:
   - "grafana.rezz.io"
   gateways:
-  - istio-ingress-gateway
-  http:
+  - grafana-gw
+  tcp:
   - match:
-    - uri:
-        prefix: /
+      - port: 443
     route:
     - destination:
         host: grafana.istio-system.svc.cluster.local
         port:
           number: 3000
-      weight: 100

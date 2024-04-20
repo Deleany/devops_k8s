@@ -10,10 +10,9 @@ spec:
   - "prometheus.rezz.io"
   gateways:
   - prometheus-gw
-  http:
+  tcp:
   - match:
-    - uri:
-        prefix: /
+      - port: 443
     route:
     - destination:
         host: prometheus.istio-system.svc.cluster.local
