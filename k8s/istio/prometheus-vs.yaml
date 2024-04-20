@@ -13,7 +13,7 @@ spec:
   http:
   - match:
     - uri:
-        port: 443
+        prefix: /
     route:
     - destination:
         host: prometheus.istio-system.svc.cluster.local
