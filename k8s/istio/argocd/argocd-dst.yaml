@@ -1,15 +1,15 @@
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: argocd-dst-rule
-  namespace: istio-system
-spec:
-  exportTo:
-    - "."
-  host: argocd-server.argocd.svc.cluster.local
-  trafficPolicy:
-    tls:
-      mode: SIMPLE
-      caCertificates: /etc/istio/ingressgateway-certs/root.pem
-      clientCertificate: /etc/istio/ingressgateway-certs/argocd.pem
-      privateKey: /etc/istio/ingressgateway-certs/argocd.key
+#apiVersion: networking.istio.io/v1beta1
+#kind: DestinationRule
+#metadata:
+#  name: argocd-dst-rule
+#  namespace: istio-system
+#spec:
+#  exportTo:
+#    - "."
+#  host: argocd-server.argocd.svc.cluster.local
+#  trafficPolicy:
+#    tls:
+#      mode: SIMPLE
+#      caCertificates: /etc/istio/ingressgateway-certs/root.pem
+#      clientCertificate: /etc/istio/ingressgateway-certs/argocd.pem
+#      privateKey: /etc/istio/ingressgateway-certs/argocd.key
