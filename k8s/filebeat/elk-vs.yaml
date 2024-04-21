@@ -20,7 +20,7 @@ spec:
         - "elastic.rezz.io"
     route:
     - destination:
-        host: external-elk-svc.istio-system.svc.cluster.local #istio-egressgateway.istio-system.svc.cluster.local
+        host: external-elk-svc.default.svc.cluster.local #istio-egressgateway.istio-system.svc.cluster.local
         port:
           number: 2021
       weight: 100

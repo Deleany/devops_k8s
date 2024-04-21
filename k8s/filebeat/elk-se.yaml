@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   exportTo:
-    - "*"
+    - "."
   location: MESH_EXTERNAL
   hosts:
   - "elastic.rezz.io"
