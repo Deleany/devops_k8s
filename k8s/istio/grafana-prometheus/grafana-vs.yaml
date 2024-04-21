@@ -4,16 +4,19 @@ metadata:
   name: grafana-vs
   namespace: istio-system
 spec:
+  exportTo:
+    - "."
   hosts:
   - "grafana.rezz.io"
   gateways:
   - argocd-gw
   http:
   - match:
-      - uri:
-          prefix: /
+    - uri:
+        prefix: /
     route:
     - destination:
         host: grafana.istio-system.svc.cluster.local
         port:
           number: 3000
+      weight: 100
