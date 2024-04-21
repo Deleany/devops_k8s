@@ -160,6 +160,11 @@ data:
       hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
       username: ${ELASTICSEARCH_USERNAME}
       password: ${ELASTICSEARCH_PASSWORD}
+      ssl.enable: true
+      ssl.certificate_authorities: "/etc/cert/root.pem"
+      ssl.certificate: "/etc/cert/filebeat.pem"
+      ssl.key: "/etc/cert/filebeat.key"
+      ssl.verification_mode: full
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -220,6 +225,9 @@ spec:
           mountPath: /etc/filebeat.yml
           readOnly: true
           subPath: filebeat.yml
+        - name: filebeat-cert-conf
+          mountPath: /etc/cert
+          readOnly: true
         - name: data
           mountPath: /usr/share/filebeat/data
         - name: varlibdockercontainers
@@ -245,4 +253,14 @@ spec:
           # When filebeat runs as non-root user, this directory needs to be writable by group (g+w).
           path: /var/lib/filebeat-data
           type: DirectoryOrCreate
+      - name: filebeat-cert-conf
+        configMap:
+          name: filebeat-cert-conf
+          items:
+          - key: "root.pem"
+            path: "root.pem"
+          - key: "filebeat.pem"
+            path: "filebeat.pem"
+          - key: "filebeat.key"
+            path: "filebeat.key"
 ---
