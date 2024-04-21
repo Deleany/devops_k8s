@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: elk-vs
-  namespace: istio-system
+  namespace: default
 spec:
   exportTo:
     - "*"
