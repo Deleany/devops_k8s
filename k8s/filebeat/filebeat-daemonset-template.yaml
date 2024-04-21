@@ -160,6 +160,7 @@ data:
       hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
       username: ${ELASTICSEARCH_USERNAME}
       password: ${ELASTICSEARCH_PASSWORD}
+      protocol: "https"
       ssl.enable: true
       ssl.certificate_authorities: "/etc/cert/root.pem"
       ssl.certificate: "/etc/cert/filebeat.pem"
