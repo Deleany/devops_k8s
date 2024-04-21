@@ -111,7 +111,7 @@ metadata:
     k8s-app: filebeat
 data:
   filebeat.yml: |-
-   filebeat.autodiscover:
+    filebeat.autodiscover:
     providers:
       - type: kubernetes
         node: ${NODE_NAME}
