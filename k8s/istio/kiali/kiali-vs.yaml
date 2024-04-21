@@ -9,7 +9,7 @@ spec:
   hosts:
   - "kiali.rezz.io"
   gateways:
-  - kiali-gw
+  - argocd-gw
   http:
   - match:
     - uri:
