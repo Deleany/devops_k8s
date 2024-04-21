@@ -112,7 +112,7 @@ metadata:
 data:
   filebeat.yml: |-
     filebeat.autodiscover:
-    providers:
+      providers:
       - type: kubernetes
         node: ${NODE_NAME}
         hints.enabled: true
