@@ -160,9 +160,9 @@ spec:
       k8s-app: filebeat
   template:
     metadata:
-      sidecar.istio.io/inject: "true"
       labels:
         k8s-app: filebeat
+        sidecar.istio.io/inject: "true"
     spec:
       serviceAccountName: filebeat
       terminationGracePeriodSeconds: 30
