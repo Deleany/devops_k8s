@@ -150,7 +150,6 @@ data:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  sidecar.istio.io/inject: "true"
   name: filebeat
   namespace: default
   labels:
@@ -161,6 +160,7 @@ spec:
       k8s-app: filebeat
   template:
     metadata:
+      sidecar.istio.io/inject: "true"
       labels:
         k8s-app: filebeat
     spec:
