@@ -12,8 +12,8 @@ spec:
   - argocd-gw
   http:
   - match:
-      - uri:
-          prefix: /
+    - uri:
+        prefix: /
     route:
     - destination:
         host: prometheus.istio-system.svc.cluster.local
