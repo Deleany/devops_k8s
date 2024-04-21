@@ -9,10 +9,11 @@ spec:
   hosts:
   - "prometheus.rezz.io"
   gateways:
-  - prometheus-gw
-  tcp:
+  - argocd-gw
+  http:
   - match:
-      - port: 443
+      - uri:
+          prefix: /
     route:
     - destination:
         host: prometheus.istio-system.svc.cluster.local

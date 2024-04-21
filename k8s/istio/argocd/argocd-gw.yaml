@@ -14,6 +14,8 @@ spec:
       protocol: HTTPS
     hosts:
     - "argocd.rezz.io"
+    - "grafana.rezz.io"
+    - "prometheus.rezz.io"
     tls:
       mode: SIMPLE
       serverCertificate: /etc/istio/ingressgateway-certs/tls.crt

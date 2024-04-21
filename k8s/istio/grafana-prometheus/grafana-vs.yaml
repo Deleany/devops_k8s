@@ -7,10 +7,11 @@ spec:
   hosts:
   - "grafana.rezz.io"
   gateways:
-  - grafana-gw
-  tcp:
+  - argocd-gw
+  http:
   - match:
-      - port: 443
+      - uri:
+          prefix: /
     route:
     - destination:
         host: grafana.istio-system.svc.cluster.local
