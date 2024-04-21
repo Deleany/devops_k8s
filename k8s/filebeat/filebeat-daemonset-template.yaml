@@ -150,6 +150,7 @@ data:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
+  sidecar.istio.io/inject: "true"
   name: filebeat
   namespace: default
   labels:
