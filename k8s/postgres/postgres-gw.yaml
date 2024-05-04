@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: postgres-gw
+  namespace: istio-system
+spec:
+  selector:
+    istio: egressgateway
+  servers:
+  - hosts:
+    - "postgres.rezz.io"
+    port:
+      number: 5432
+      name: tcp-5432
+      protocol: TCP
