@@ -2,14 +2,14 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: app-vs
-  namespace: default
+  namespace: istio-system
 spec:
   exportTo:
   - "."
   hosts:
   - "app.rezz.io"
   gateways:
-  - app-gw
+  - argocd-gw
   http:
   - match:
     - uri:
