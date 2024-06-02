@@ -19,4 +19,4 @@ spec:
         host: vault-ui.vault.svc.cluster.local
         port:
           number: 8200
-      weight: 100
+      weight: 100vim

@@ -3,6 +3,8 @@ kind: DestinationRule
 metadata:
   name: core-app-dst-rule
 spec:
+  exportTo:
+    - "."
   host: core-app-svc
   subsets:
   - name: core-app-subset

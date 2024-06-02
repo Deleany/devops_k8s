@@ -5,7 +5,7 @@ metadata:
 spec:
   exportTo:
     - "*"
-  location: MESH_EXTERNAL
+  loccuation: MESH_EXTERNAL
   hosts:
   - "postgres.rezz.io"
   ports:
