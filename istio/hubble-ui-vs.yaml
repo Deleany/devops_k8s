@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: hubble-ui-vs
+  namespace: istio-system
+spec:
+  exportTo:
+    - "."
+  hosts:
+  - "hubble.rezz.io"
+  gateways:
+  - argocd-gw
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: hubble-ui.kube-system.svc.cluster.local
+        port:
+          number: 80
+      weight: 100
