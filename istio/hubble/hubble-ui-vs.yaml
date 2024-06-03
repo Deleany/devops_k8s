@@ -2,14 +2,14 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: hubble-ui-vs
-  namespace: istio-system
+  namespace: rezz-dev
 spec:
   exportTo:
     - "."
   hosts:
   - "hubble.rezz.io"
   gateways:
-  - argocd-gw
+  - rezz-dev-gw
   http:
   - match:
     - uri:
