@@ -2,5 +2,6 @@
 
 
 
-# Istio
-![image](https://github.com/user-attachments/assets/ebfb9892-9447-4325-b446-784a590fb094)
+# Hubble UI
+![image](https://github.com/user-attachments/assets/629815d6-d3d2-4190-b900-70bd8f1f4a62)
+
