@@ -53,7 +53,7 @@ data:
     gwVjjUhWOiPaenVG0xfgjJmJ8kaIvxotLDP9/MfRy1ZuKISHjinaHW5vI20KJWav
     xOUt8l9/t5KrknlJpdloGJJFyJkJtxtP6iaHDU+s4/DRx+GS
     -----END CERTIFICATE-----
-  filebeat.key: |-
+  filebeat.key: |- # pragma: allowlist secret
     -----BEGIN PRIVATE KEY-----
     MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCohbl08XnKiTwi
     DYrhZpEiORAQRXfZIn6jfR9fihYQCQsdCCMMuCw7pfszhLDAVTRLLqMuxqY0HzNp

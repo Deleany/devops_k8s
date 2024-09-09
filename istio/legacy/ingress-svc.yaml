@@ -40,4 +40,3 @@ spec:
     istio: ingressgateway-rezz
   sessionAffinity: None
   type: LoadBalancer
-
