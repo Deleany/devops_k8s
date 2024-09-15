@@ -237,9 +237,9 @@ spec:
         secret:
           defaultMode: 420
           optional: true
-          secretName: istio-egressgateway-certs
+          secretName: istio-egressgateway-certs # pragma: allowlist secret
       - name: egressgateway-ca-certs
         secret:
           defaultMode: 420
           optional: true
-          secretName: istio-egressgateway-ca-certs
+          secretName: istio-egressgateway-ca-certs # pragma: allowlist secret

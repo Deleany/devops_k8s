@@ -243,9 +243,9 @@ spec:
         secret:
           defaultMode: 420
           optional: true
-          secretName: istio-ingressgateway-certs
+          secretName: istio-ingressgateway-certs # pragma: allowlist secret
       - name: ingressgateway-ca-certs
         secret:
           defaultMode: 420
           optional: true
-          secretName: istio-ingressgateway-ca-certs
+          secretName: istio-ingressgateway-ca-certs # pragma: allowlist secret
