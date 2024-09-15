@@ -5,7 +5,7 @@ metadata:
   namespace: rezz-dev
 spec:
   exportTo:
-    - "*"
+    - "."
   loccuation: MESH_EXTERNAL
   hosts:
   - "postgres.rezz.io"
