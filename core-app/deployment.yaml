@@ -85,35 +85,35 @@ spec:
           - name: logs-dir
             mountPath: /tmp/logs
             readOnly: false
-    volumes:
-      - name: core-app-vol
-        configMap:
-          name: core-app-config
-          items:
-            - key: "config.ini"
-              path: "config.ini"
-            - key: "game-special-key"
-              path: "game-special-key"
+      volumes:
+        - name: core-app-vol
+          configMap:
+            name: core-app-config
+            items:
+              - key: "config.ini"
+                path: "config.ini"
+              - key: "game-special-key"
+                path: "game-special-key"
 
-      - name: filebeat-config
-        configMap:
-          name: filebeat-config
-          items:
-          - key: "filebeat.yml"
-            path: "filebeat.yml"
+        - name: filebeat-config
+          configMap:
+            name: filebeat-config
+            items:
+            - key: "filebeat.yml"
+              path: "filebeat.yml"
 
-      - name: filebeat-cert-conf
-        configMap:
-          name: filebeat-cert-conf
-          items:
-            - key: "root.pem"
-              path: "root.pem"
+        - name: filebeat-cert-conf
+          configMap:
+            name: filebeat-cert-conf
+            items:
+              - key: "root.pem"
+                path: "root.pem"
 
-            - key: "filebeat.pem"
-              path: "filebeat.pem"
+              - key: "filebeat.pem"
+                path: "filebeat.pem"
 
-            - key: "filebeat.key"
-              path: "filebeat.key"
+              - key: "filebeat.key"
+                path: "filebeat.key"
 
-      - name: logs-dir
-        emptyDir: {}
+        - name: logs-dir
+          emptyDir: {}
