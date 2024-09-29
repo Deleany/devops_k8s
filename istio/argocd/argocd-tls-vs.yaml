@@ -18,5 +18,5 @@ spec:
     - destination:
         host: argocd-server.argocd.svc.cluster.local
         port:
-          number: 20001
+          number: 443
       weight: 100
