@@ -1,1 +1,22 @@
-i
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: argocd-vs
+  namespace: rezz-dev
+spec:
+  exportTo:
+    - "."
+  hosts:
+  - "argocd.rezz.io"
+  gateways:
+  - rezz-dev-gw
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: argocd.argocd-server.svc.cluster.local
+        port:
+          number: 20001
+      weight: 100
