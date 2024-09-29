@@ -16,7 +16,7 @@ spec:
         prefix: /
     route:
     - destination:
-        host: argocd.argocd-server.svc.cluster.local
+        host: argocd-server.argocd.svc.cluster.local
         port:
           number: 20001
       weight: 100
