@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<title>HTML Tutorial</title>
+<body>
+<h2>Web Server {{ ansible_fqdn }}</h2>
+<p>Created by Jinja2 Template</p>
+<table>
+ <tr>
+ <td><b>Distribution</b></td>
+ <td>{{ ansible_facts['distribution'] }}</td>
+ </tr>
+ <tr>
+ <td><b>Version</b></td>
+ <td>{{ ansible_facts['distribution_version'] }}</td>
+ </tr>
+ <tr>
+ <td><b>Architecture</b></td>
+ <td>{{ ansible_facts['architecture'] }}</td>
+ </tr>
+</table>
+</body>
