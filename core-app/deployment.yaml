@@ -73,7 +73,7 @@ spec:
 #            memory: 400Mi
 #        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
 #        command: [ "sh", "-c" ]
-        volumeMounts:
+        volumes:
 #          - name: filebeat-config
 #            mountPath: /etc/filebeat
 #            readOnly: true
