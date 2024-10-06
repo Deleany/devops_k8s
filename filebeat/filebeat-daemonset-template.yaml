@@ -187,6 +187,7 @@ spec:
           #privileged: true
         resources:
           limits:
+            cpu: 300m
             memory: 200Mi
           requests:
             cpu: 100m
