@@ -73,7 +73,7 @@ spec:
 #            memory: 400Mi
 #        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
 #        command: [ "sh", "-c" ]
-        volumes:
+      volumes:
 #          - name: filebeat-config
 #            mountPath: /etc/filebeat
 #            readOnly: true
@@ -86,14 +86,14 @@ spec:
 #            mountPath: /tmp/logs
 #            readOnly: false
 #            volumes:
-          - name: core-app-vol
-            configMap:
-              name: core-app-config
-              items:
-                - key: "config.ini"
-                  path: "config.ini"
-                - key: "game-special-key"
-                  path: "game-special-key"
+        - name: core-app-vol
+          configMap:
+            name: core-app-config
+            items:
+              - key: "config.ini"
+                path: "config.ini"
+              - key: "game-special-key"
+                path: "game-special-key"
 
 #          - name: filebeat-config
 #            configMap:
