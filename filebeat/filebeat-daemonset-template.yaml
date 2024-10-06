@@ -114,6 +114,10 @@ data:
     filebeat.autodiscover:
       providers:
       - type: kubernetes
+        json.keys_under_root: true
+        json.overwrite_keys: true
+        json.add_error_key: true
+        json.message_key: message
         node: ${NODE_NAME}
         hints.enabled: true
         hints.default_config:
