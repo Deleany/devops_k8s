@@ -52,14 +52,14 @@ spec:
           - name: core-app-vol
             mountPath: "/config"
             readOnly: true
-
-          - name: filebeat-config
-            mountPath: /etc/filebeat
-            readOnly: true
-
-          - name: logs-dir
-            mountPath: /tmp/logs
-            readOnly: false
+#
+#          - name: filebeat-config
+#            mountPath: /etc/filebeat
+#            readOnly: true
+#
+#          - name: logs-dir
+#            mountPath: /tmp/logs
+#            readOnly: false
 
 #      - name: filebeat-sidecar
 #        image: deleany/file:latest
