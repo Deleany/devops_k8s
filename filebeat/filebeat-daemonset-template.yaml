@@ -122,6 +122,7 @@ data:
             type: container
             paths:
               - /var/log/containers/*-${data.container.id}.log
+            fields_under_root: true   
 
 
         
