@@ -127,10 +127,6 @@ data:
             json.message_key: log
             json.add_error_key: true
 
-    processors:
-    - decode_json_fields:
-        fields: ["message"]
-        target: ""
         
     output.elasticsearch:
       hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
