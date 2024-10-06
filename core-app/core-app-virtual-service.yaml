@@ -2,20 +2,20 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: core-app-vs
-  namespace: istio-system
+  namespace: rezz-dev
 spec:
   exportTo:
   - "*"
   hosts:
   - "app.rezz.io"
   gateways:
-  - argocd-gw
+  - rezz-dev-gw
   http:
   - match:
     - uri:
         prefix: /
     route:
     - destination:
-        host: core-app-svc.default.svc.cluster.local
+        host: core-app-svc.rezz-dev.svc.cluster.local
         subset: core-app-subset
       weight: 100

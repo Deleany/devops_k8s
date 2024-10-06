@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace:
+  namespace: rezz-dev
   name: core-app
   labels:
     sidecar.istio.io/inject: true
