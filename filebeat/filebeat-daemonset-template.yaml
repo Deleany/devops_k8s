@@ -122,7 +122,6 @@ data:
             type: container
             paths:
               - /var/log/containers/*-${data.container.id}.log
-            fields_under_root: true
             json.keys_under_root: true
             json.message_key: log
             json.add_error_key: true
