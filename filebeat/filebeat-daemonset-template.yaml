@@ -126,8 +126,13 @@ data:
                 target: ""
                 message_key: message
                 add_error_key: true
-                
-        processors:
+          prospector:
+           scanner:
+             fingerprint.enabled: true
+             symlinks: true
+          file_identity.fingerprint: ~
+      
+      processors:
         - decode_json_fields:
             fields: ["message"]
             process_array: false
@@ -136,11 +141,6 @@ data:
             overwrite_keys: true
             add_error_key: true
             expand_keys: true
-          prospector:
-           scanner:
-             fingerprint.enabled: true
-             symlinks: true
-          file_identity.fingerprint: ~
 
     output.elasticsearch:
       hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
