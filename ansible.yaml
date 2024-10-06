@@ -9,18 +9,18 @@
    - httpd
    - firewalld
   rule: http
- tasks:
- - name: INSTALL PACKAGES
-   yum:
+  tasks:
+  - name: INSTALL PACKAGES
+     yum:
      name: "{{ rpm }}"
      state: latest
- - name: SETUP SERVICE
+  - name: SETUP SERVICE
    service:
      name: "{{ item }}"
      state: started
      enabled: yes
      loop: "{{ svc }}"
- - name: ALLOW HTTP ACCESS
+  - name: ALLOW HTTP ACCESS
    firewalld:
      service: "{{ rule }}"
      state: enabled
