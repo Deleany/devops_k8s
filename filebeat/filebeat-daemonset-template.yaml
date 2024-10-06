@@ -126,6 +126,16 @@ data:
                 target: ""
                 message_key: message
                 add_error_key: true
+                
+        processors:
+        - decode_json_fields:
+            fields: ["message"]
+            process_array: false
+            max_depth: 3
+            target: ""
+            overwrite_keys: true
+            add_error_key: true
+            expand_keys: true
           prospector:
            scanner:
              fingerprint.enabled: true
