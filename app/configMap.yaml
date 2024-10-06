@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: app-config
-  namespace: default
+  namespace: rezz-dev
 data:
   game-special-key: |
     enemies=aliens
