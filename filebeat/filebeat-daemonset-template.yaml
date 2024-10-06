@@ -124,6 +124,7 @@ data:
           parsers:
             - ndjson:
                 target: ""
+                message_key: msg
                 add_error_key: true
           prospector:
            scanner:
