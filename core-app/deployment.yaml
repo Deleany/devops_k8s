@@ -4,7 +4,6 @@ metadata:
   namespace: rezz-dev
   name: core-app
   labels:
-    sidecar.istio.io/inject: true
     app: core-app
 
 spec:
