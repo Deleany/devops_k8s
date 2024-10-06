@@ -122,7 +122,9 @@ data:
           paths:
           - /var/log/containers/*-${data.kubernetes.container.id}.log
           parsers:
-          - container: ~
+            - ndjson:
+                target: ""
+                add_error_key: true
           prospector:
            scanner:
              fingerprint.enabled: true
