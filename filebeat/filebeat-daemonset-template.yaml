@@ -126,7 +126,12 @@ data:
           include_annotations:
             - app.kubernetes.io/version
             - app-release
-                    
+            
+    processors:
+    - decode_json_fields:
+        fields: ["message"]
+        target: ""
+        
     output.elasticsearch:
       hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
       username: ${ELASTICSEARCH_USERNAME}
