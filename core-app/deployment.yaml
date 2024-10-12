@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace:
+  namespace: rezz-dev
   name: core-app
   labels:
     app: core-app
@@ -52,39 +52,40 @@ spec:
           - name: core-app-vol
             mountPath: "/config"
             readOnly: true
+#
+#          - name: filebeat-config
+#            mountPath: /etc/filebeat
+#            readOnly: true
+#
+#          - name: logs-dir
+#            mountPath: /tmp/logs
+#            readOnly: false
 
-          - name: filebeat-config
-            mountPath: /etc/filebeat
-            readOnly: true
-
-          - name: logs-dir
-            mountPath: /tmp/logs
-            readOnly: false
-      - name: filebeat-sidecar
-        image: deleany/file:latest
-        imagePullPolicy: Always
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-          limits:
-            cpu: 200m
-            memory: 400Mi
-        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
-        command: [ "sh", "-c" ]
-        volumeMounts:
-          - name: filebeat-config
-            mountPath: /etc/filebeat
-            readOnly: true
-
-          - name: filebeat-cert-conf
-            mountPath: /etc/cert
-            readOnly: true
-
-          - name: logs-dir
-            mountPath: /tmp/logs
-            readOnly: false
+#      - name: filebeat-sidecar
+#        image: deleany/file:latest
+#        imagePullPolicy: Always
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 200Mi
+#          limits:
+#            cpu: 200m
+#            memory: 400Mi
+#        args: [ "filebeat -c /etc/filebeat/filebeat.yml" ]
+#        command: [ "sh", "-c" ]
       volumes:
+#          - name: filebeat-config
+#            mountPath: /etc/filebeat
+#            readOnly: true
+#
+#          - name: filebeat-cert-conf
+#            mountPath: /etc/cert
+#            readOnly: true
+#
+#          - name: logs-dir
+#            mountPath: /tmp/logs
+#            readOnly: false
+#            volumes:
         - name: core-app-vol
           configMap:
             name: core-app-config
@@ -94,25 +95,25 @@ spec:
               - key: "game-special-key"
                 path: "game-special-key"
 
-        - name: filebeat-config
-          configMap:
-            name: filebeat-config
-            items:
-            - key: "filebeat.yml"
-              path: "filebeat.yml"
-
-        - name: filebeat-cert-conf
-          configMap:
-            name: filebeat-cert-conf
-            items:
-              - key: "root.pem"
-                path: "root.pem"
-
-              - key: "filebeat.pem"
-                path: "filebeat.pem"
-
-              - key: "filebeat.key"
-                path: "filebeat.key"
-
-        - name: logs-dir
-          emptyDir: {}
+#          - name: filebeat-config
+#            configMap:
+#              name: filebeat-config
+#              items:
+#              - key: "filebeat.yml"
+#                path: "filebeat.yml"
+#
+#          - name: filebeat-cert-conf
+#            configMap:
+#              name: filebeat-cert-conf
+#              items:
+#                - key: "root.pem"
+#                  path: "root.pem"
+#
+#                - key: "filebeat.pem"
+#                  path: "filebeat.pem"
+#
+#                - key: "filebeat.key"
+#                  path: "filebeat.key"
+#
+#          - name: logs-dir
+#            emptyDir: {}
