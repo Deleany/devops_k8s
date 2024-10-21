@@ -20,7 +20,7 @@ ssh-add /root/.ssh/$HOST_KEY_NAME
 
 echo "start to key propagation"
 for server in $(cat /etc/ansible/hosts | tail -n +2); \
-do sshpass -p "$PASS" ssh-copy-id -i /root/.ssh/"$HOST_KEY_NAME".pub $USER@"$server"; \
+do sshpass -p "$PASS" ssh-copy-id -i /root/.ssh/"$HOST_KEY_NAME".pub -o 'StrictHostKeychecking=no' $USER@"$server"; \
 done
 
 echo "DONE!"
