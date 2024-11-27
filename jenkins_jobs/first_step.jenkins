@@ -1,13 +1,6 @@
-#!groovy
-// Check properties
-properties([disableConcurrentBuilds()])
-
 pipeline {
     agent any
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
-        timestamps()
-    }
+
 stages {
         stage("login to k8s") {
             steps {
