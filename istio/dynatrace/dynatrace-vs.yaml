@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: dynatrace-vs
+  namespace: rezz-dev
+spec:
+  exportTo:
+    - "."
+  hosts:
+  - "dynatrace.rezz.io"
+  gateways:
+  - rezz-dev-gw
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: dynatrace-webhook.dynatrace.svc.cluster.local
+        port:
+          number: 443
+      weight: 100
