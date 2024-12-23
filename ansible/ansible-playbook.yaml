@@ -1,0 +1,29 @@
+- name: LINUX SERVER CONFIGURATION
+  hosts: k8s
+  become: true
+  vars:
+    some_var: some_value
+    firewall: firewalld
+  tasks:
+  - name: "Firewalld off"
+    service:
+      name: "{{firewall}}"
+      state: stopped
+      enabled: false
+  - name: "DNF CONFIGURATION"
+    lineinfile:
+      path: /etc/dnf/dnf.conf
+      line: "fastestmirror=true\nmax_parallel_downloads=10\n"
+  - name: "CLEAN ALL"
+    shell:
+      cmd:  "dnf clean all"
+
+  - name: "install bash-completion"
+    dnf:
+      name: "bash-completion"
+      state: "latest"
+      
+  - name: "install neo vim"
+    dnf:
+      state: "latest"
+      name: "neovim python3-neovim"
