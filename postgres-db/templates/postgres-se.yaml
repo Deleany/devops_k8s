@@ -7,10 +7,12 @@ spec:
   exportTo:
     - "."
   location: MESH_EXTERNAL
+  {{- with .Values.hosts }}
   hosts:
-  - "postgres.rezz.io"
+    {{- toYaml . | nindent 2 }}  
+  {{- end}}
+  {{- with .Values.ports }}
   ports:
-  - name: tcp-postgres
-    number: {{ .Values.port }}
-    protocol: TCP
+    {{- toYaml . | nindent 2 }}
+  {{- end }}
   resolution: DNS

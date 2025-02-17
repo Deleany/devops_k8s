@@ -6,9 +6,11 @@ metadata:
   selector:
     istio: egressgateway
   servers:
+  {{- with .Values.hosts }}
   - hosts:
-    - {{ .Values.host | quote }}
-    port:
-      number: {{ .Values.port }}
-      name: tcp-{{ .Values.port}}
-      protocol: TCP
+    {{- toYaml . | nindent 4 }} 
+  {{- end}}
+  port:
+    number: {{ .Values.port }}
+    name: tcp-{{ .Values.port}}
+    protocol: TCP

@@ -7,13 +7,15 @@ spec:
   exportTo:
     - "."
   hosts:
-  -  {{ .Values.host | quote }}
+  {{- range $host := .Values.hosts }}
+  - {{ $host | quote }}
+  {{- end }}
   gateways:
   - mesh
   - {{ .Chart.Name }}-gw
   tcp:
   - match:
-    - port: {{ .Values.port}}
+    - port: {{ .Values.port }}
       gateways:
       - mesh
     route:
@@ -26,7 +28,10 @@ spec:
       - {{ .Chart.Name }}-gw
     route:
     - destination:
-        host: {{ .Values.host }}
+        host:
+        {{- range $host := .Values.hosts }}
+        - {{ $host  | quote }}
+      {{- end }}
         port:
           number: {{ .Values.port }}
       weight: 100

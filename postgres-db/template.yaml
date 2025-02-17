@@ -23,24 +23,24 @@ metadata:
     istio: egressgateway
   servers:
   - hosts:
-    - "postgres.rezz.io"
-    port:
-      number: 5432
-      name: tcp-5432
-      protocol: TCP
+    - postgres.rezz.io
+  port:
+    number: 5432
+    name: tcp-5432
+    protocol: TCP
 ---
 # Source: postgres-db/templates/postgres-se.yaml
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: -se
+  name: postgres-db-se
   namespace: rezz-dev
 spec:
   exportTo:
     - "."
   location: MESH_EXTERNAL
   hosts:
-  - "postgres.rezz.io"
+  - postgres.rezz.io
   ports:
   - name: tcp-postgres
     number: 5432
@@ -57,7 +57,7 @@ spec:
   exportTo:
     - "."
   hosts:
-  -  "postgres.rezz.io"
+  - "postgres.rezz.io"
   gateways:
   - mesh
   - postgres-db-gw
@@ -76,7 +76,8 @@ spec:
       - postgres-db-gw
     route:
     - destination:
-        host: postgres.rezz.io
+        host:
+        - "postgres.rezz.io"
         port:
           number: 5432
       weight: 100
