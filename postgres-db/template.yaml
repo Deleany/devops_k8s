@@ -1,0 +1,82 @@
+---
+# Source: postgres-db/templates/postgres-ext-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-db-external-svc
+  namespace: rezz-dev
+spec:
+  selector:
+    istio: egressgateway
+  ports:
+  - name: tcp-5432
+    port: 5432
+    targetPort: 5432
+---
+# Source: postgres-db/templates/postgres-gw.yaml
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: postgres-db-gw
+  namespace: rezz-dev
+  selector:
+    istio: egressgateway
+  servers:
+  - hosts:
+    - "postgres.rezz.io"
+    port:
+      number: 5432
+      name: tcp-5432
+      protocol: TCP
+---
+# Source: postgres-db/templates/postgres-se.yaml
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: -se
+  namespace: rezz-dev
+spec:
+  exportTo:
+    - "."
+  location: MESH_EXTERNAL
+  hosts:
+  - "postgres.rezz.io"
+  ports:
+  - name: tcp-postgres
+    number: 5432
+    protocol: TCP
+  resolution: DNS
+---
+# Source: postgres-db/templates/postgres-vs.yaml
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: postgres-db-vs
+  namespace: rezz-dev
+spec:
+  exportTo:
+    - "."
+  hosts:
+  -  "postgres.rezz.io"
+  gateways:
+  - mesh
+  - postgres-db-gw
+  tcp:
+  - match:
+    - port: 5432
+      gateways:
+      - mesh
+    route:
+    - destination:
+        host: postgres-db-external-svc.rezz-dev.svc.cluster.local
+      weight: 100
+  - match:
+    - port: 5432
+      gateways:
+      - postgres-db-gw
+    route:
+    - destination:
+        host: postgres.rezz.io
+        port:
+          number: 5432
+      weight: 100

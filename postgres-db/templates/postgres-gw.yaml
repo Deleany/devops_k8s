@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: {{ .Chart.Name }}-gw
+  namespace: {{ .Values.namespace }}
+  selector:
+    istio: egressgateway
+  servers:
+  - hosts:
+    - {{ .Values.host | quote }}
+    port:
+      number: {{ .Values.port }}
+      name: tcp-{{ .Values.port}}
+      protocol: TCP

@@ -1,8 +1,8 @@
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: postgres-se
-  namespace: rezz-dev
+  name: {{ .Chart.Name }}-se
+  namespace: {{ .Values.namespace }}
 spec:
   exportTo:
     - "."
@@ -11,6 +11,6 @@ spec:
   - "postgres.rezz.io"
   ports:
   - name: tcp-postgres
-    number: 5432
+    number: {{ .Values.port }}
     protocol: TCP
   resolution: DNS
