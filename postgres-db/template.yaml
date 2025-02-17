@@ -76,6 +76,7 @@ spec:
       - postgres-db-gw
     route:
     - destination:
+    # тут нужно подумать, как сделать лучше
         host:
         - "postgres.rezz.io"
         port:
