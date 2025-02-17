@@ -12,4 +12,3 @@ EXPOSE 8080/tcp
 
 ENTRYPOINT [ "/app/server" ]
 CMD [ "executable" ]
-gi
