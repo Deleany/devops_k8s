@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: {{ .Chart.Name }}-gw
+  name: {{ printf "%s-%s" .Chart.Name "gw"}}
   namespace: {{ .Values.namespace }}
   selector:
     istio: egressgateway
@@ -12,5 +12,5 @@ metadata:
   {{- end}}
   port:
     number: {{ .Values.port }}
-    name: tcp-{{ .Values.port}}
+    name: {{ printf "%s-%s" "tcp" ( toString .Values.port) }}
     protocol: TCP

@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: {{ .Chart.Name }}-vs
+  name: {{ printf "%s-%s" .Chart.Name "vs" }}
   namespace: {{ .Values.namespace }}
 spec:
   exportTo:
@@ -12,7 +12,7 @@ spec:
   {{- end }}
   gateways:
   - mesh
-  - {{ .Chart.Name }}-gw
+  - {{ printf "%s-%s" .Chart.Name "gw" }}
   tcp:
   - match:
     - port: {{ .Values.port }}
@@ -28,6 +28,7 @@ spec:
       - {{ .Chart.Name }}-gw
     route:
     - destination:
+    # тут нужно подумать, как сделать лучше
         host:
         {{- range $host := .Values.hosts }}
         - {{ $host  | quote }}

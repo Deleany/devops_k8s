@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: {{ .Chart.Name }}-se
+  name: {{ printf "%s-%s" .Chart.Name "se"}}
   namespace: {{ .Values.namespace }}
 spec:
   exportTo:
