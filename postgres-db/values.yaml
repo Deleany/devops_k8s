@@ -2,7 +2,7 @@ namespace: rezz-dev
 
 
 ports:
-- name: tcp-postgres
+- name: tcp-5432
   number: 5432
   protocol: TCP
 
