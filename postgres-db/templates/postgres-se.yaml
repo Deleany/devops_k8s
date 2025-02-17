@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: {{ .Chart.Name }}-se
+  namespace: {{ .Values.namespace }}
+spec:
+  exportTo:
+    - "."
+  location: MESH_EXTERNAL
+  {{- with .Values.hosts }}
+  hosts:
+    {{- toYaml . | nindent 2 }}  
+  {{- end}}
+  {{- with .Values.ports }}
+  ports:
+    {{- toYaml . | nindent 2 }}
+  {{- end }}
+  resolution: DNS
