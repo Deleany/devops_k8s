@@ -53,7 +53,7 @@ path.logs: /var/log/elasticsearch
 # By default Elasticsearch is only accessible on localhost. Set a different
 # address here to expose this node on the network:
 #
-network.host: 192.168.88.101
+network.host: 192.168.88.114
 #
 # By default Elasticsearch listens for HTTP traffic on the first free port it
 # finds starting at 9200. Set a specific HTTP port here:
@@ -94,14 +94,14 @@ discovery.seed_hosts: ["127.0.0.1"]
 xpack.security.enabled: true
 xpack.security.transport.ssl.enabled: true
 xpack.security.transport.ssl.verification_mode: certificate
-xpack.security.transport.ssl.certificate_authorities: root.pem
-xpack.security.transport.ssl.certificate: elastic.rezz.io.pem
-xpack.security.transport.ssl.key: elastic.rezz.io.key
+xpack.security.transport.ssl.certificate_authorities: /etc/elasticsearch/certs/root.pem
+xpack.security.transport.ssl.certificate: /etc/elasticsearch/certs/elk.pem
+xpack.security.transport.ssl.key: /etc/elasticsearch/certs/elk.key
 xpack.security.transport.ssl.client_authentication: required
 
 
 xpack.security.http.ssl.enabled: true
-xpack.security.http.ssl.certificate_authorities: root.pem
-xpack.security.http.ssl.certificate: elastic.rezz.io.pem
-xpack.security.http.ssl.key: elastic.rezz.io.key
+xpack.security.http.ssl.certificate_authorities: /etc/elasticsearch/certs/root.pem
+xpack.security.http.ssl.certificate: /etc/elasticsearch/certs/elk.pem
+xpack.security.http.ssl.key: /etc/elasticsearch/certs/elk.key
 xpack.security.http.ssl.client_authentication: optional

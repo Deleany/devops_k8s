@@ -2,13 +2,13 @@ apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
   name: external-host-elk-se
-  namespace: filebeat
+  namespace: logging
 spec:
   exportTo:
     - "."
   location: MESH_EXTERNAL
   hosts:
-  - "elastic.rezz.io"
+  - "elk.rezz.io"
   ports:
   - name: tls-elk
     number: 9200

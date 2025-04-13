@@ -2,12 +2,12 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: elk-vs
-  namespace: filebeat
+  namespace: logging
 spec:
   exportTo:
     - "*"
   hosts:
-  - "elastic.rezz.io"
+  - "elk.rezz.io"
   gateways:
   - mesh
   - elk-gw
@@ -17,10 +17,10 @@ spec:
         - mesh
       port: 9200
       sniHosts:
-        - "elastic.rezz.io"
+        - "elk.rezz.io"
     route:
     - destination:
-        host: external-elk-svc.filebeat.svc.cluster.local #istio-egressgateway.istio-system.svc.cluster.local
+        host: external-elk-svc.logging.svc.cluster.local #istio-egressgateway.istio-system.svc.cluster.local
         port:
           number: 2021
       weight: 100
@@ -30,10 +30,10 @@ spec:
         - elk-gw
       port: 2021
       sniHosts:
-        - "elastic.rezz.io"
+        - "elk.rezz.io"
     route:
     - destination:
-        host: "elastic.rezz.io"
+        host: "elk.rezz.io"
         port:
           number: 9200
       weight: 100
