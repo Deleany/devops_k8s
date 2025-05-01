@@ -1,15 +1,22 @@
 pipeline { 
     agent any
-
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                withCredentials([sshUserPrivateKey(credentialsId: '33acb6e6-e62f-4958-bba3-d64026ae3f31', keyFileVariable: 'KEY')]) {
+                    sh '''
+                    eval $(ssh-agent -s)
+                    ssh-add "$KEY"
+                    ssh -o StrictHostKeyChecking=no -i $KEY root@192.168.88.113 "hostname"
+                    hostname
+                    '''
+                }
+                sh id
             }
         }
         stage('The End') {
             steps {
-                echo 'exit'
+                sh 'hostname'
             }
         }
     }

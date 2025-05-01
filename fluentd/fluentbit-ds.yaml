@@ -1,0 +1,368 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fluent-bit
+  namespace: logging
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: fluent-bit-read
+rules:
+- apiGroups: [""]
+  resources:
+  - namespaces
+  - pods
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: fluent-bit-read
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: fluent-bit-read
+subjects:
+- kind: ServiceAccount
+  name: fluent-bit
+  namespace: logging
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-ssl-cm
+  namespace: logging
+data:
+  root.pem: |-
+    -----BEGIN CERTIFICATE-----
+    MIIDwDCCAqigAwIBAgIIJ+vXcTNEV24wDQYJKoZIhvcNAQELBQAwXDELMAkGA1UE
+    BhMCUlUxCzAJBgNVBAgMAk1PMQ4wDAYDVQQHDAVNb2NvdzERMA8GA1UECgwIUkVa
+    Wi1ERVYxCzAJBgNVBAsMAklUMRAwDgYDVQQDDAdSRVpaLUNBMB4XDTI1MDIyMzA5
+    MTM0MloXDTI2MDIyMzA5MTM0MlowXjELMAkGA1UEBhMCUlUxCzAJBgNVBAgMAk1P
+    MQ8wDQYDVQQHDAZNb3Njb3cxETAPBgNVBAoMCFJFWlotREVWMQswCQYDVQQLDAJJ
+    VDERMA8GA1UEAwwIUkVaWi1JTlQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+    AoIBAQDxpdrDbEnvW8wmFRjc/vzPmQJLd9b0J3K4FLvVB5q0+l6Ar4Zm3Hnedzru
+    HB4DaZScg2QjsY1vxHE5OcFgXtmZkMgYmcDg7yAwAl9yU3i7FROOftqbWiXRwYLC
+    PBvc6nRSRizb+sdPVLDjqGBr5S1HHQiKhn2hIsXx9nElWfXuSUyqauGsGkRxxLHn
+    p+xblXCHm4BCr2gk1lfKnTNRnSkNj7UBGeFQ982GEArxf1bnjjIAW1EbNVnSy7lR
+    +jFlVEeEQl/VJ+5DoRzf84cLv5EugTSsA/bSz6yVztog/C8qZswZxzIFZshQYFLk
+    VftEuvSWNu7w53Cn0qHKbyE5zVCFAgMBAAGjgYMwgYAwDwYDVR0TAQH/BAUwAwEB
+    /zAOBgNVHQ8BAf8EBAMCAbYwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMC
+    MB0GA1UdDgQWBBRiSxEHuNFYlrLbNdUvFq1Qrou8+DAfBgNVHSMEGDAWgBTbm7RY
+    Eb4Eg6f1ibRsv8Brjmrj0zANBgkqhkiG9w0BAQsFAAOCAQEAihb0R/edp+XyT0mu
+    FtBoDLGojGahZMQevBJ//ZIHtbfeEaZsvbc56CXHtdP0kz8dDiIIPIxac2OIt5Rw
+    PcSPI6LzUJK3gkvfzSCuohj5lRPRRTCFX8lkrVbhsyAL5/OdzHIV8tF6N/KqtF81
+    Cy56mDIZfIAJn3jGNYjOIE9lJeETdQO/KusGQ59SMTyplOMpM1fzwgc/kPxAYX+4
+    fnRULKPRbneqSFqUHr/ztbz+WQXpAhZxbPKVD7hxZXDY1+7BxlIrsx5Uh6wgX6gN
+    SIFha6z9eUmENSP9hVA5aNZ/Y4Uz63xVwY1v4IigGie8iPLeF0wkwb639+EXm/du
+    sO0xSQ==
+    -----END CERTIFICATE-----
+  elk.pem: |-
+    -----BEGIN CERTIFICATE-----
+    MIIDmDCCAoCgAwIBAgIILxyZoc9MezUwDQYJKoZIhvcNAQELBQAwXjELMAkGA1UE
+    BhMCUlUxCzAJBgNVBAgMAk1PMQ8wDQYDVQQHDAZNb3Njb3cxETAPBgNVBAoMCFJF
+    WlotREVWMQswCQYDVQQLDAJJVDERMA8GA1UEAwwIUkVaWi1JTlQwHhcNMjUwMjIz
+    MTEwMTU4WhcNMjYwMjIzMTEwMTU4WjAWMRQwEgYDVQQDDAtlbGsucmV6ei5pbzCC
+    ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAK1bUBb/+VAg0CxRhUVqX/ec
+    K281ngOKOFdNgwOValVb0JMdBZMftwW8pjKrFjRkeLiPmyh2LqlFtEKB64Qc7hCc
+    LC8l+PNH7avB5r33LeUsYw09R4JBxUev/P+O2IRubs1fwaVpnT7JWZPI3K2Xx7Bf
+    AiwnwsC1DGzB+q8BpQZImS82g3S8z31bXfvNIj+V5Rsy2wq4hrzfpwR1gOMssH7f
+    02MXwXHoxO4LR11ghonw8Eg6kmezb+egp6RDpB2TeaunnsXkK6QaPkTgFt4nvKKH
+    9CH3pE3j8YILMu1ElEYVB4ol8qY7OvQSHcBnYvCaLJGKuAzzlCr3ComHLyG4m/0C
+    AwEAAaOBoTCBnjAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBtjAdBgNV
+    HSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwHQYDVR0OBBYEFJZG2QK3p6uYA1sZ
+    Crg42v/fADbGMB8GA1UdIwQYMBaAFGJLEQe40ViWsts11S8WrVCui7z4MBwGA1Ud
+    EQQVMBOCC2Vsay5yZXp6LmlvhwTAqFhyMA0GCSqGSIb3DQEBCwUAA4IBAQBJLTmD
+    KqibTPqz9ZVYzMCRWNxuFQxg15UzXtVB1ovnAFvl3AjKHMno2o1tsOJCjKnGOxoU
+    wdJiYzlYddJx7dpFeZOxKAxJXq4DjsdtLgpFE471ePMBfOYLyHPFY1aXVOa/mLzv
+    QlBW5C+R5Vzi5gRYfUHmrlMfFgUOcIzkgGHkVckUxDqm0gChcgLbP0zdq7seTajC
+    xTzR1AsEfyVcHH0GMYxuEcrBJbp9qZWzGHTrtLKja0Y+EEo/47+OtbRX+bQ+/ZA9
+    LHgNOg4YYIVVidYTn9qKGvLsko/dqiiODPLcBb4v4iaz38OOgOo2+3qRfcq65hEs
+    y8eWQM3/RbQxj8hE
+    -----END CERTIFICATE-----
+  elk.key: |- # pragma: allowlist secret
+    -----BEGIN PRIVATE KEY-----
+    MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtW1AW//lQINAs
+    UYVFal/3nCtvNZ4DijhXTYMDlWpVW9CTHQWTH7cFvKYyqxY0ZHi4j5sodi6pRbRC
+    geuEHO4QnCwvJfjzR+2rwea99y3lLGMNPUeCQcVHr/z/jtiEbm7NX8GlaZ0+yVmT
+    yNytl8ewXwIsJ8LAtQxswfqvAaUGSJkvNoN0vM99W137zSI/leUbMtsKuIa836cE
+    dYDjLLB+39NjF8Fx6MTuC0ddYIaJ8PBIOpJns2/noKekQ6Qdk3mrp57F5CukGj5E
+    4BbeJ7yih/Qh96RN4/GCCzLtRJRGFQeKJfKmOzr0Eh3AZ2LwmiyRirgM85Qq9wqJ
+    hy8huJv9AgMBAAECggEADDvidg0QeiAmsMn7/r8YELBbvFhrU1Kg0UBuG4Wi4G0/
+    VfJ5Xz2gu+3pSLAcPAxPHK89wug8OMPriboDdepYvqFW2Oj0Ha8YzcM8VnGoMoEk
+    aF3HuyCLHJkF4L8i9o2YkjPMxbCjYTfyc2R8dl+8vuyliZowu0rLmq1B1LHoBH5j
+    SWBebTWztcSVit7bTmaJOOlLmXeexZWWh6RGMa9fiGPNXL0bgDksgfLmaQ7S17e3
+    A7B8XXskFwEBa9v4TrhzGrJk1WaGM4g40uICc8mhFdkiR6T3wQ6Eekk9fV0zw4xZ
+    PXaY3cqCg0BLTm3bbjCGAyemR8p18dZG2ga6A8SRQQKBgQDib3Iq4P9BIBQNGsoE
+    nfuAg4E2M7oCgw11Ub/rvuR0HFwUkGMxDIySWNu9V5p5gUEFuJjglBTJB1EAiUtp
+    +mEsp70cXzErUa4oj0UsoP2Oo684kkw/h8rwt2zQPuG+3vBtcDtzD6gvoEcuk/OJ
+    cxMcTh50EPcjoszUGfIBH1hlTQKBgQDD/bllt/0MbcHKkkfMB3VUErYZXhg93Ovt
+    GuQykC+XrB0G6nr8QeXfDP+yGWkQ7xWANW/DwycBiKEbPW6PHnMggTQ1QLVZGjeX
+    jtAk+lnmSgBpmR7x+UhasWTjSMcts742s1vlIuyyVeghAVMlCteWrJv0TzGJQelp
+    1ysfz9z5cQKBgQDQYe+XNmix7muFg9nWVe1WX69RylisZx7DkPAmbA6iLFcxNY+T
+    XBEhvVS78xreJu1H7pICW0SlnG4XKEKWzS0Qg22t5ozBaPH1saPfZmjyFAD09u3k
+    qXtB/AvPuY7WsSRiEp8jTI1jBwV6//1nyNcVfW7ZMaO+z9vgdeAY2FfpIQKBgCdj
+    b4Yc0vNTf5XpjhpYCWFrHUO94FtWcefF9sSeq6HsyiygpTTbPYp1P1IYvz/S/Nw2
+    YQ7TwpwRTGeAEh8bPIH01Xw6U/fjR/bikbxMwBKDHtAaINj6g2sOqbrv3m+15u1x
+    YG+NdEpm727qqD4Sjr9OU01nOQpfv7wwrQ8IpF1RAoGAAbnV95v7mzDy6wr3KE9q
+    W5eO5U8wep3Up/2bA4yEyaxxu4fbR0+1o99CyRvCSs8hDzdI5vR+iMWSOt2/o4VK
+    Te+7BhB9ICR3kaKcjWgBuvVZU3WOneolT57Zig2xLQoOQVDaSDsTvDo0vjv9tWbC
+    1mpc9HnPg4q/obk3rgRnuro=
+    -----END PRIVATE KEY-----
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-config
+  namespace: logging
+  labels:
+    k8s-app: fluent-bit
+data:
+  # Configuration files: server, input, filters and output
+  # ======================================================
+  fluent-bit.conf: |
+    [SERVICE]
+        Flush         1
+        Log_Level     info
+        Daemon        off
+        Parsers_File  parsers.conf
+        HTTP_Server   On
+        HTTP_Listen   0.0.0.0
+        HTTP_Port     2020
+    @INCLUDE input-kubernetes.conf
+    @INCLUDE filter-kubernetes.conf
+    @INCLUDE output-elasticsearch.conf
+  input-kubernetes.conf: |
+    [INPUT]
+        Name              tail
+        Tag               rezz-fluentbit.*
+        Path              /var/log/containers/*.log
+        Parser            docker
+        DB                /var/log/flb-example-app.db
+        Mem_Buf_Limit     5MB
+        Skip_Long_Lines   On
+        Refresh_Interval  10
+    [INPUT]
+        Name tail
+        Tag sysapp.gen.log.mail
+        Parser sys_log_file
+        Path /var/log/mail
+        db /var/log/mail.db
+    [INPUT]
+        Name tail
+        Tag sysapp.gen.log.secure
+        Parser sys_log_file
+        Path /var/log/secure
+        db /var/log/secure.db
+    [INPUT]
+        Name tail
+        Tag sysapp.gen.log.messages
+        Parser sys_log_file
+        Path /var/log/messages
+        db /var/log/messages.db
+    [INPUT]
+        Name tail
+        Tag sysapp.gen.log.cron
+        Parser sys_log_file
+        Path /var/log/cron
+        db /var/log/cron.db
+  filter-kubernetes.conf: |
+    [FILTER]
+        Name                kubernetes
+        Match               rezz-fluentbit.*
+        Kube_URL            https://kubernetes.default.svc.cluster.local:443
+        Kube_CA_File        /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        Kube_Token_File     /var/run/secrets/kubernetes.io/serviceaccount/token
+        Kube_Tag_Prefix     rezz-fluentbit.var.log.containers.
+        Merge_Log           On
+        Merge_Log_Key       log_processed
+        K8S-Logging.Parser  Off
+        K8S-Logging.Exclude Off
+    [FILTER]
+        Name modify
+        Match sysapp.gen.log.mail
+        Set app syslog
+        Set file /var/log/mail
+    [FILTER]
+        Name modify
+        Match sysapp.gen.log.secure
+        Set app syslog
+        Set file /var/log/secure
+    [FILTER]
+        Name modify
+        Match sysapp.gen.log.messages
+        Set app syslog
+        Set file /var/log/messages
+    [FILTER]
+        Name modify
+        Match sysapp.gen.log.cron
+        Set app syslog
+        Set file /var/log/cron
+  output-elasticsearch.conf: |
+    [OUTPUT]
+        Name            es
+        Match           rezz-fluentbit.*
+        Host            elk.rezz.io
+        Port            9200
+        tls             on
+        tls.verify      off
+        tls.debug       4
+        tls.ca_file     /etc/cert/root.pem
+        tls.crt_file    /etc/cert/elk.pem
+        tls.key_file    /etc/cert/elk.key
+        HTTP_User       fluentd
+        HTTP_Passwd     fluentd
+        Logstash_Format On
+        Logstash_Prefix rezz-fluentbit
+        Replace_Dots    On
+        Retry_Limit     False
+        Suppress_Type_Name On
+    [OUTPUT]
+        Name            es
+        Match           sysapp.gen.log.*
+        Host            elk.rezz.io
+        Port            9200
+        tls             on
+        tls.verify      off
+        tls.debug       4
+        tls.ca_file     /etc/cert/root.pem
+        tls.crt_file    /etc/cert/elk.pem
+        tls.key_file    /etc/cert/elk.key
+        HTTP_User       fluentd
+        HTTP_Passwd     fluentd
+        Logstash_Format On
+        Logstash_Prefix sysapp-gen-log
+        Replace_Dots    On
+        Retry_Limit     False
+        Suppress_Type_Name On
+  parsers.conf: |
+    [PARSER]
+        Name   apache
+        Format regex
+        Regex  ^(?<host>[^ ]*) [^ ]* (?<user>[^ ]*) \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^\"]*?)(?: +\S*)?)?" (?<code>[^ ]*) (?<size>[^ ]*)(?: "(?<referer>[^\"]*)" "(?<agent>[^\"]*)")?$
+        Time_Key time
+        Time_Format %d/%b/%Y:%H:%M:%S %z
+    [PARSER]
+        Name   apache2
+        Format regex
+        Regex  ^(?<host>[^ ]*) [^ ]* (?<user>[^ ]*) \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^ ]*) +\S*)?" (?<code>[^ ]*) (?<size>[^ ]*)(?: "(?<referer>[^\"]*)" "(?<agent>[^\"]*)")?$
+        Time_Key time
+        Time_Format %d/%b/%Y:%H:%M:%S %z
+    [PARSER]
+        Name   apache_error
+        Format regex
+        Regex  ^\[[^ ]* (?<time>[^\]]*)\] \[(?<level>[^\]]*)\](?: \[pid (?<pid>[^\]]*)\])?( \[client (?<client>[^\]]*)\])? (?<message>.*)$
+    [PARSER]
+        Name   nginx
+        Format regex
+        Regex ^(?<remote>[^ ]*) (?<host>[^ ]*) (?<user>[^ ]*) \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^\"]*?)(?: +\S*)?)?" (?<code>[^ ]*) (?<size>[^ ]*)(?: "(?<referer>[^\"]*)" "(?<agent>[^\"]*)")?$
+        Time_Key time
+        Time_Format %d/%b/%Y:%H:%M:%S %z
+    [PARSER]
+        Name   json
+        Format json
+        Time_Key time
+        Time_Format %d/%b/%Y:%H:%M:%S %z
+    [PARSER]
+        Name        docker
+        Format      json
+        Time_Key    time
+        Time_Format %Y-%m-%dT%H:%M:%S.%L
+        Time_Keep   On
+    [PARSER]
+        Name        syslog
+        Format      regex
+        Regex       ^\<(?<pri>[0-9]+)\>(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<host>[^ ]*) (?<ident>[a-zA-Z0-9_\/\.\-]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
+        Time_Key    time
+        Time_Format %b %d %H:%M:%S
+    [PARSER]
+        Format regex
+        Name sys_log_file
+        Regex (?<message>(?<time>[^ ]*\s{1,2}[^ ]*\s[^ ]*)\s(?<host>[a-zA-Z0-9_\/\.\-]*)\s.*)$
+        Time_Format %b %d %H:%M:%S
+        Time_Keep Off
+        Time_Key time
+        Time_Offset +0300
+    [PARSER]
+        Format regex
+        Name java_multiline
+        Regex (?<time>\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2},\d{3}) \[(?<process>\S*)\] (?<loglevel>\w{4,5})\s{1,2}(?<message>.*)
+        Time_Format %Y-%m-%d %H:%M:%S,%L
+        Time_Keep Off
+        Time_Key time
+        Time_Offset +0300
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluent-bit
+  namespace: logging
+  labels:
+    k8s-app: fluent-bit-logging
+    version: v1
+    kubernetes.io/cluster-service: "true"
+spec:
+  selector:
+    matchLabels:
+      k8s-app: fluent-bit-logging
+  template:
+    metadata:
+      labels:
+        k8s-app: fluent-bit-logging
+        version: v1
+        kubernetes.io/cluster-service: "true"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "2020"
+        prometheus.io/path: /api/v1/metrics/prometheus
+    spec:
+      containers:
+      - name: fluent-bit
+        image: fluent/fluent-bit:3.2.6
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 2020
+        env:
+        - name: FLUENT_ELASTICSEARCH_HOST
+          value: "elk.rezz.io"
+        - name: FLUENT_ELASTICSEARCH_PORT
+          value: "9200"
+        - name: FLUENT_ELASTICSEARCH_USER
+          value: fluentd
+        - name: FLUENT_ELASTICSEARCH_PASSWORD
+          value: fluentd
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+        - name: fluent-bit-config
+          mountPath: /fluent-bit/etc/
+        - name: fluent-bit-ssl-config
+          mountPath: /etc/cert/
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: fluent-bit-config
+        configMap:
+          name: fluent-bit-config
+      - name: fluent-bit-ssl-config
+        configMap:
+          name: fluent-bit-ssl-cm
+      serviceAccountName: fluent-bit  
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+      - operator: "Exists"
+        effect: "NoExecute"
+      - operator: "Exists"
+        effect: "NoSchedule"

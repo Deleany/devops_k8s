@@ -12,5 +12,5 @@ spec:
     labels:
       app: core-app
     trafficPolicy:
-        tls:
-          mode: ISTIO_MUTUAL
+      tls:
+        mode: ISTIO_MUTUAL
