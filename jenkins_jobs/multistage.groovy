@@ -19,7 +19,7 @@ pipeline {
         }
         stage('use token') {
             when {
-                env.GLOBAL_VAR != 'initial'
+                environment name: 'GLOBAL_VAR', value: 'initial'
             }
             steps {
                 script {
