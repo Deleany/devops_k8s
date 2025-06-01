@@ -17,7 +17,7 @@ pipeline {
         stage('use token'){
             steps {
                 script{
-                    println("${env.GLOBAL_VAR}")
+                    echo "Значение из Stage 1: ${env.GLOBAL_VAR}"
                     println(env.SOME_VAR)
                 }
             }
