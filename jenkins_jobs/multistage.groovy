@@ -1,3 +1,6 @@
+def sharedVar = 'sharedVar'
+
+
 pipeline {
     agent any 
 
@@ -11,6 +14,7 @@ pipeline {
             steps {
                 script{
                     env.GLOBAL_VAR = 'Hello from Stage 1'
+                    sharedVar = "Data from Stage 1"
                 }
             }
         }
@@ -19,6 +23,7 @@ pipeline {
                 script{
                     echo "Значение из Stage 1: ${env.GLOBAL_VAR}"
                     println(env.SOME_VAR)
+                    echo "Значение из Stage 1: ${sharedVar}"
                 }
             }
 
