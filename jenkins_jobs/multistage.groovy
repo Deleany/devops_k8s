@@ -1,7 +1,7 @@
 pipeline {
     agent any 
 
-    envirinment{
+    environment{
         GLOBAL_VAR = ''
         SOME_VAR = 1
 
