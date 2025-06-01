@@ -4,8 +4,8 @@ pipeline {
     agent any
     
     options {
-    ansiColor('xterm')  // Поддержка цветов (требует плагин AnsiColor)
-}
+        ansiColor('xterm')  // Поддержка цветов (требует плагин AnsiColor)
+    }
 
     environment {
         GLOBAL_VAR = 'initial'
