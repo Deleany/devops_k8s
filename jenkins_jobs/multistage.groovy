@@ -1,4 +1,4 @@
-String sharedVar = 'sharedVar'
+def sharedVar = 'sharedVar'
 
 pipeline {
     agent any
