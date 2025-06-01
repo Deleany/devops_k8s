@@ -2,6 +2,10 @@ def sharedVar = 'sharedVar'
 
 pipeline {
     agent any
+    
+    options {
+    ansiColor('xterm')  // Поддержка цветов (требует плагин AnsiColor)
+}
 
     environment {
         GLOBAL_VAR = 'initial'
@@ -21,7 +25,7 @@ pipeline {
             when {
                 not {
                     environment name: 'GLOBAL_VAR', value: 'initial'
-                }             
+                }
             }
             steps {
                 script {
