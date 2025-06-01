@@ -7,20 +7,22 @@ pipeline {
 
     }
     stages{
-        stage ('get token'){
-
-            script{
-                env.GLOBAL_VAR == 'Hello from Stage 1'
+        stage('get token'){
+            steps {
+                script{
+                    env.GLOBAL_VAR == 'Hello from Stage 1'
+                }
+            }
+        stage('use token'){
+            steps {
+                script{
+                    println(env.GLOBAL_VAR)
+                    println(env.SOME_VAR)
+                }
             }
 
-        stage('user token'){
-            script{
-                println(env.GLOBAL_VAR)
-                println(env.SOME_VAR)
-            }
         }
-        }
-        
+           
     }
     
 }
