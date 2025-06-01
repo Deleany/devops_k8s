@@ -1,5 +1,5 @@
 pipeline {
-    agent { any }
+    agent any 
 
     envirinment{
         GLOBAL_VAR = ''
