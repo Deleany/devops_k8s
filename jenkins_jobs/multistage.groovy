@@ -13,6 +13,7 @@ pipeline {
                     env.GLOBAL_VAR == 'Hello from Stage 1'
                 }
             }
+        }
         stage('use token'){
             steps {
                 script{
@@ -22,6 +23,6 @@ pipeline {
             }
 
         }
-             
-    }
+    }           
+ 
 }
