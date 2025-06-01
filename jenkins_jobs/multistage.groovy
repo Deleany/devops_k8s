@@ -18,6 +18,9 @@ pipeline {
             }
         }
         stage('use token') {
+            when {
+                env.GLOBAL_VAR != 'initial'
+            }
             steps {
                 script {
                     echo "Значение env.GLOBAL_VAR: ${env.GLOBAL_VAR}"
