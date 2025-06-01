@@ -2,7 +2,7 @@ pipeline {
     agent any 
 
     environment{
-        GLOBAL_VAR = ''
+        GLOBAL_VAR = 'inti'
         SOME_VAR = 1
 
     }
@@ -10,7 +10,7 @@ pipeline {
         stage('get token'){
             steps {
                 script{
-                    env.GLOBAL_VAR == 'Hello from Stage 1'
+                    env.GLOBAL_VAR = 'Hello from Stage 1'
                 }
             }
         }
