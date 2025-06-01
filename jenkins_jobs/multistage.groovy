@@ -1,6 +1,5 @@
 def sharedVar = 'sharedVar'
 
-
 pipeline {
     agent any 
 
