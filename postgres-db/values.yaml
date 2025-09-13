@@ -1,13 +1,15 @@
 namespace: rezz-dev
 
 
+some_value: value
+
 ports:
-- name: tcp-5432
-  number: 5432
-  protocol: TCP
+  - name: tcp-5432
+    number: 5432
+    protocol: TCP
 
 
 port: 5432
 
 hosts:
-- "postgres.rezz.io"
+  - "postgres.rezz.io"
