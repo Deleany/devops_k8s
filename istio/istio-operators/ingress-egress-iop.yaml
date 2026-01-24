@@ -5,6 +5,7 @@ metadata:
   namespace: rezz-dev
 spec:
   meshConfig:
+    accessLogFile: /dev/stdout
     outboundTrafficPolicy:
       mode: REGISTRY_ONLY
   profile: minimal 
